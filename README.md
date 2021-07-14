@@ -1,15 +1,15 @@
 # soft-uni
 ***This is repository, which contains all the tasks I have done during courses at Software University*** - www.softuni.bg
-<!-- Technology Fundamentals Start -->
+<!-- Programming Basics Start -->
 <hr />
 <!-- Summary Begin -->
 <details>
 <summary> Click for Details
 <table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
 <tbody>
-<tr><th align="center" width="50%">Technology Fundamentals - September 2018: <br /> 
-21/09/2018 - 21/01/2019</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 17/12/2018</th><th>
-<p><a title="Technology Fundamentals" href="https://softuni.bg/certificates/details/60995/6b6ec5a8" target="_blank">Certificate</a></p>
+<tr><th align="center" width="50%">Programming Basics - January 2020: <br /> 
+04/01/2020 - 01/03/2020</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 05/03/2020</th><th>
+<p><a title="Programming Basics" href="https://softuni.bg/certificates/details/76609/e6726889" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -18,20 +18,20 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="Technology Fundamentals Course Overview" href="https://github.com/Ignatovw99/SoftUni/tree/master/Technology%20Fundamentals%20-%202018" target="_blank">Technology Fundamentals Course Overview</a></p>
+<p><a title="Programming Basics Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/programming-basics" target="_blank">Programming Basics Course Overview</a></p>
 </details>
  <hr />
-<!-- Technology Fundamentals End -->
- <!-- Java Advanced Start -->
+<!-- Programming Basics -->
+ <!-- Java Fundamentals Start -->
 <hr />
 <!-- Summary Begin -->
 <details>
 <summary> Click for Details
 <table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
 <tbody>
-<tr><th align="center" width="50%">Java Advanced - January 2019: <br /> 
-15/01/2019 - 25/02/2019</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 05/03/2019</th><th>
-<p><a title="Java Advanced" href="https://softuni.bg/certificates/details/63187/925caffc" target="_blank">Certificate</a></p>
+<tr><th align="center" width="50%">Java Fundamentals - May 2020: <br /> 
+18/05/2020 - 09/08/2020</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 18/08/2020</th><th>
+<p><a title="Java Fundamentals" href="https://softuni.bg/certificates/details/85846/d5715b01" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -40,7 +40,29 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="Java Advanced Course Overview" href="https://github.com/Ignatovw99/SoftUni/tree/master/Java%20Advanced%20-%202019" target="_blank">Java Advanced Course Overview</a></p>
+<p><a title="Java Fundamentals Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/fundamentals" target="_blank">Java Fundamentals Course Overview</a></p>
+</details>
+ <hr />
+<!-- Java Fundamentals End -->
+<!-- Java Advanced Start -->
+<hr />
+<!-- Summary Begin -->
+<details>
+<summary> Click for Details
+<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
+<tbody>
+<tr><th align="center" width="50%">Java Advanced - September 2020: <br /> 
+15/09/2020 - 25/10/2020</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 02/11/2020</th><th>
+<p><a title="Java Advanced" href="https://softuni.bg/certificates/details/89855/1f5a96fb" target="_blank">Certificate</a></p>
+</th></tr>
+</tbody>
+</table>
+</summary>
+<!-- Summary End -->
+<!-- Course Body -->
+<tr>
+<td width="50%">
+<p><a title="Java Advanced Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/advanced" target="_blank">Java Advanced Course Overview</a></p>
 </details>
  <hr />
 <!-- Java Advanced End -->
@@ -51,9 +73,9 @@
 <summary> Click for Details
 <table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
 <tbody>
-<tr><th align="center" width="50%">Java OOP - February 2019: <br /> 
-26/02/2019 - 15/04/2019</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 23/04/2019</th><th>
-<p><a title="Java OOP" href="https://softuni.bg/certificates/details/65934/08fbc41c" target="_blank">Certificate</a></p>
+<tr><th align="center" width="50%">Java OOP - October 2020: <br /> 
+27/10/2020 - 12/12/2020</th><th width="40%">Grade: 5.89 (out of 6.00)<br /> Issue Date: 22/12/2020</th><th>
+<p><a title="Java OOP" href="https://softuni.bg/certificates/details/93564/d7416aa7" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -62,10 +84,54 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="Java OOP Course Overview" href="https://github.com/Ignatovw99/SoftUni/tree/master/Java%20OOP%20-%202019" target="_blank">Java OOP Course Overview</a></p>
+<p><a title="Java OOP Overview" href="https://github.com/stefangulev/soft-uni/tree/main/oop" target="_blank">Java OOP Course Overview</a></p>
 </details>
  <hr />
 <!-- Java OOP End -->
+<!-- JS Advanced Start -->
+<hr />
+<!-- Summary Begin -->
+<details>
+<summary> Click for Details
+<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
+<tbody>
+<tr><th align="center" width="50%">JS Advanced - January 2021: <br /> 
+11/01/2021 - 20/02/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 23/02/2020</th><th>
+<p><a title="Java Advanced" href="https://softuni.bg/certificates/details/98302/d2c76377" target="_blank">Certificate</a></p>
+</th></tr>
+</tbody>
+</table>
+</summary>
+<!-- Summary End -->
+<!-- Course Body -->
+<tr>
+<td width="50%">
+<p><a title="Java Advanced Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/advanced" target="_blank">Java Advanced Course Overview</a></p>
+</details> 
+<hr />
+<!-- Java Advanced End -->
+<!-- JS Applications Start -->
+<hr />
+<!-- Summary Begin -->
+<details>
+<summary> Click for Details
+<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
+<tbody>
+<tr><th align="center" width="50%">JS Applications - February 2021: <br /> 
+22/02/2021 - 04/04/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 06/04/2021</th><th>
+<p><a title="Java Applications href="https://softuni.bg/certificates/details/102372/b73f00ae" target="_blank">Certificate</a></p>
+</th></tr>
+</tbody>
+</table>
+</summary>
+<!-- Summary End -->
+<!-- Course Body -->
+<tr>
+<td width="50%">
+<p><a title="Java Applications Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/applications" target="_blank">Java Applications Course Overview</a></p>
+</details> 
+<hr />
+<!-- Java Applications End -->
 <!-- MySQL Start -->
 <hr />
 <!-- Summary Begin -->
@@ -73,9 +139,9 @@
 <summary> Click for Details
 <table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
 <tbody>
-<tr><th align="center" width="50%">MySQL - May 2019: <br /> 
-13/05/2019 - 31/07/2019</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 03/08/2019</th><th>
-<p><a title="MySQL" href="https://softuni.bg/certificates/details/68919/c0a8a12c" target="_blank">Certificate</a></p>
+<tr><th align="center" width="50%">MySQL - May 2021: <br /> 
+20/05/2021 - 20/06/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 22/06/2021</th><th>
+<p><a title="MySQL href="https://softuni.bg/certificates/details/107810/83b8ea02" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -84,29 +150,7 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="MySQL Course Overview" href="https://github.com/Ignatovw99/SoftUni/tree/master/Database%20Basics%20-%20MySQL%20-%202019" target="_blank">MySQL Course Overview</a></p>
-</details>
- <hr />
-<!-- MySQL End -->
-<!-- Hibernate Start -->
-<hr />
-<!-- Summary Begin -->
-<details>
-<summary> Click for Details
-<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
-<tbody>
-<tr><th align="center" width="50%">Hibernate - June 2019: <br /> 
-10/06/2019 - 29/07/2019</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 03/08/2019</th><th>
-<p><a title="Hibernate" href="https://softuni.bg/certificates/details/68967/6e22380a" target="_blank">Certificate</a></p>
-</th></tr>
-</tbody>
-</table>
-</summary>
-<!-- Summary End -->
-<!-- Course Body -->
-<tr>
-<td width="50%">
-<p><a title="Hibernate Course Overview" href="https://github.com/Ignatovw99/SoftUni/tree/master/Database%20Frameworks%20-%20Hibernate%20and%20Spring%20Data%20-%202019" target="_blank">Hibernate Course Overview</a></p>
+<p><a title="MySQL Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/mysql" target="_blank">MySQL Course Overview</a></p>
 </details> 
 <hr />
-<!-- Hibernate End -->
+<!-- MySQL End -->
