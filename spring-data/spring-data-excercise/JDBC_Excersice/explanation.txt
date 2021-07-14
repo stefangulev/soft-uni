@@ -1,0 +1,1 @@
+In the classes named after the problems, I have each problem solved. In the Main class I refactored my solutions.
