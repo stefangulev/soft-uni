@@ -97,7 +97,7 @@
 <tbody>
 <tr><th align="center" width="50%">JS Advanced - January 2021: <br /> 
 11/01/2021 - 20/02/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 23/02/2020</th><th>
-<p><a title="Java Advanced" href="https://softuni.bg/certificates/details/98302/d2c76377" target="_blank">Certificate</a></p>
+<p><a title="JS Advanced" href="https://softuni.bg/certificates/details/98302/d2c76377" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -106,10 +106,10 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="Java Advanced Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/advanced" target="_blank">Java Advanced Course Overview</a></p>
+<p><a title="JS Advanced Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/advanced" target="_blank">JS Advanced Course Overview</a></p>
 </details> 
 <hr />
-<!-- Java Advanced End -->
+<!-- JS Advanced End -->
 <!-- JS Applications Start -->
 <hr />
 <!-- Summary Begin -->
@@ -119,7 +119,7 @@
 <tbody>
 <tr><th align="center" width="50%">JS Applications - February 2021: <br /> 
 22/02/2021 - 04/04/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 06/04/2021</th><th>
-<p><a title="Java Applications href="https://softuni.bg/certificates/details/102372/b73f00ae" target="_blank">Certificate</a></p>
+<p><a title="JS Applications href="https://softuni.bg/certificates/details/102372/b73f00ae" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -128,10 +128,10 @@
 <!-- Course Body -->
 <tr>
 <td width="50%">
-<p><a title="Java Applications Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/applications" target="_blank">Java Applications Course Overview</a></p>
+<p><a title="JS Applications Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/js/applications" target="_blank">JS Applications Course Overview</a></p>
 </details> 
 <hr />
-<!-- Java Applications End -->
+<!-- JS Applications End -->
 <!-- MySQL Start -->
 <hr />
 <!-- Summary Begin -->
