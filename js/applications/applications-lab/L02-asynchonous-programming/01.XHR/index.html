@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="load">Load Repos</button>
+    <div id="res"></div>
+    <script>
+let divResult = document.getElementById("res");
+  let url = 'https://api.github.com/users/testnakov/repos';
+  let button = document.querySelector('button');
+
+  const httpRequest = new XMLHttpRequest();
+
+  button.addEventListener('click', () => {
+   httpRequest.addEventListener('readystatechange', () => {
+      if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+          console.log('works');
+         divResult.textContent = httpRequest.responseText;
+      }
+   });
+   httpRequest.open("GET", url);
+httpRequest.send();
+  })
+    </script>
+</body>
+
+</html>
