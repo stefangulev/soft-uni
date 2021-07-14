@@ -119,7 +119,7 @@
 <tbody>
 <tr><th align="center" width="50%">JS Applications - February 2021: <br /> 
 22/02/2021 - 04/04/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 06/04/2021</th><th>
-<p><a title="JS Applications href="https://softuni.bg/certificates/details/102372/b73f00ae" target="_blank">Certificate</a></p>
+<p><a title="JS Applications" href="https://softuni.bg/certificates/details/102372/b73f00ae" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
@@ -141,7 +141,7 @@
 <tbody>
 <tr><th align="center" width="50%">MySQL - May 2021: <br /> 
 20/05/2021 - 20/06/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 22/06/2021</th><th>
-<p><a title="MySQL href="https://softuni.bg/certificates/details/107810/83b8ea02" target="_blank">Certificate</a></p>
+<p><a title="MySQL" href="https://softuni.bg/certificates/details/107810/83b8ea02" target="_blank">Certificate</a></p>
 </th></tr>
 </tbody>
 </table>
