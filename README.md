@@ -154,3 +154,25 @@
 </details> 
 <hr />
 <!-- MySQL End -->
+ <!-- Spring Data Start -->
+<hr />
+<!-- Summary Begin -->
+<details>
+<summary> Click for Details
+<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
+<tbody>
+<tr><th align="center" width="50%">Spring Data - June 2021: <br /> 
+21/06/2021 - 01/08/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 09/08/2021</th><th>
+<p><a title="Spring Data" href="https://softuni.bg/certificates/details/110120/d9b748c8" target="_blank">Certificate</a></p>
+</th></tr>
+</tbody>
+</table>
+</summary>
+<!-- Summary End -->
+<!-- Course Body -->
+<tr>
+<td width="50%">
+<p><a title="Spring Data Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/spring-data" target="_blank">Spring Data Course Overview</a></p>
+</details> 
+<hr />
+<!-- Spring Data End -->
