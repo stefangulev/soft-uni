@@ -31,7 +31,7 @@ public class ContractController {
         if(creationSuccessful) {
             LOGGER.info("Contract for item with ID# {} succesfully created in the database! Initial price - {}!", itemId, price);
         } else {
-            LOGGER.info("Contract was not created. Item with ID# {} does not exist in the database or Contract for this item is already created!", itemId);
+            LOGGER.info("Contract was not created. Either Item with ID# {} does not exist in the database, contract for this item is already created or the price entered is invalid!", itemId);
         }
         return creationSuccessful;
     }
@@ -59,7 +59,7 @@ public class ContractController {
             LOGGER.info("No active contracts!");
             return null;
         }
-        LOGGER.info("Returning all active contracts!");
+        LOGGER.info("Returning all active contracts ordered by price in ASC order!");
         return active;
     }
     @PutMapping("/buy")
@@ -75,7 +75,7 @@ public class ContractController {
         if (buySuccessful) {
             LOGGER.info("Contract bought! Item with ID# {} is now owned by User with ID # {}!", itemId, buyerId);
         } else {
-            LOGGER.info("Request to buy was unsuccessful. There was no active contract for this item, or the buyer was invalid due to not existing in the database or low funds!");
+            LOGGER.info("Request to buy was unsuccessful. There was no active contract for this item, or the buyer was invalid due to not existing in the database. having low funds or buying from himself!");
         }
 
         return  buySuccessful;

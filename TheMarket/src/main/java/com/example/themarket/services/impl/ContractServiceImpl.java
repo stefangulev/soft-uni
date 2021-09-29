@@ -14,6 +14,9 @@ import com.example.themarket.services.ContractService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,12 +40,13 @@ public class ContractServiceImpl implements ContractService {
     public boolean create(CreateContractServiceDto createContractServiceDto) {
         Long itemId = createContractServiceDto.getItemId();
         Item requestedItem = itemRepository.findItemById(itemId);
-        if (requestedItem == null || contractRepository.findContractByItemId(itemId) != null) {
+        BigDecimal price = createContractServiceDto.getPrice();
+        if (requestedItem == null || contractRepository.findContractByItemId(itemId) != null || price.doubleValue() < 0) {
             return false;
         }
         User seller = requestedItem.getOwner();
        contractRepository.save(new Contract().setActive(true).setSeller(seller)
-               .setItem(requestedItem).setPrice(createContractServiceDto.getPrice()));
+               .setItem(requestedItem).setPrice(price));
         return true;
     }
 
@@ -69,7 +73,7 @@ public class ContractServiceImpl implements ContractService {
             dto.setSellerId(c.getSeller().getId());
             dto.setItemId(c.getItem().getId());
             return dto;
-        }).collect(Collectors.toSet());
+        }).sorted(Comparator.comparing(GetActiveContractDto::getPrice)).collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     @Override
@@ -82,6 +86,9 @@ public class ContractServiceImpl implements ContractService {
             return false;
         }
         User seller = userRepository.findByUserId(contract.getSeller().getId());
+        if (buyerId.equals(seller.getId())) {
+            return false;
+        }
         Item item = itemRepository.findItemById(itemId);
         seller.setAccountBalance(seller.getAccountBalance().add(contract.getPrice()));
         buyer.setAccountBalance(buyer.getAccountBalance().subtract(contract.getPrice()));
