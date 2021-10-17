@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "spring.jpa.mvc.hiddenmethod.filter.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.mvc.hiddenmethod.filter.enabled."
+    },
+    {
+      "name": "spring.jpa.mvc.hiddenmethod.filter.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.mvc.hiddenmethod.filter.enabled."
+    },
+    {
+      "name": "spring.jpa.mvc.hiddenmethod.filter.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.mvc.hiddenmethod.filter.enabled."
+    },
+    {
+      "name": "spring.jpa.mvc.hiddenmethod.filter.enabled",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.mvc.hiddenmethod.filter.enabled."
+    }
+  ] }
