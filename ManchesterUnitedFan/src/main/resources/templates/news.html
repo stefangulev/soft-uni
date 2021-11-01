@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<div th:each="anArticle : ${newsArticles}" class="card mb-3" style="max-width: 890px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img th:src="${anArticle.imgUrl ?: '/img/logo.png'}"  width="250" height="200" alt="Article image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 th:text="${anArticle.title}" class="card-title"></h5>
+                <p th:text="|${#strings.substring(anArticle.text, 0, 20)}...|" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p th:text="|Last updated: ${anArticle.updated}|" class="card-text"><small class="text-muted"></small></p>
+            </div>
+            <a class="btn btn-dark" th:href="@{/news/details/{id}(id=${anArticle.id})}">Details</a>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

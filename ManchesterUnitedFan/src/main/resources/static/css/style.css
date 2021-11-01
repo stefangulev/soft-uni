@@ -1,0 +1,16 @@
+.bg-nav{
+    background-color: darkred;
+}
+.bg-ul {
+    background-color: #433735;
+}
+.div-center {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 1460px;
+    height: 1460px;
+    outline: 1px black;
+}
+
+

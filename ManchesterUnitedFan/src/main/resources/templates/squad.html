@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+
+<div th:each="aPlayer : ${players}"  class="card col-sm-6 bor" style="border: none; width: 18rem; display: inline-block">
+    <img class="card-img-top" th:src="${aPlayer.imgUrl}" alt="Card image cap">
+    <div class="card-body">
+        <p class="card-text" th:text="|${aPlayer.firstName ?: ''} ${aPlayer.lastName}|"></p>
+    </div>
+     <a class="btn btn-dark" th:href="@{/team/squad/details/{id}(id=${aPlayer.id})}">Details</a>
+</div>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

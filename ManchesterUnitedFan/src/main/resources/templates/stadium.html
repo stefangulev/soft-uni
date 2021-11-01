@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<div class="card bg-dark text-white">
+    <img class="card-img" width="700" height="600" src="/images/old-trafford-1.jpg" alt="Card image">
+    <div class="card-img-overlay">
+        <h5 class="card-title">"The Theatre of Dreams"</h5>
+        <p class="card-text">Old Trafford is a football stadium in Old Trafford, Greater Manchester, England, and the home of Manchester United. With a capacity of 74,140 seats, it is the largest club football stadium (and second-largest football stadium overall after Wembley Stadium) in the United Kingdom, and the eleventh-largest in Europe. It is about 0.5 miles (800 m) from Old Trafford Cricket Ground and the adjacent tram stop.
+            Nicknamed "The Theatre of Dreams" by Bobby Charlton, Old Trafford has been United's home ground since 1910, although from 1941 to 1949 the club shared Maine Road with local rivals Manchester City as a result of Second World War bomb damage. Old Trafford underwent several expansions in the 1990s and 2000s, including the addition of extra tiers to the North, West and East Stands, almost returning the stadium to its original capacity of 80,000. Future expansion is likely to involve the addition of a second tier to the South Stand, which would raise the capacity to around 88,000. The stadium's record attendance was recorded in 1939, when 76,962 spectators watched the FA Cup semi-final between Wolverhampton Wanderers and Grimsby Town.
+            Today, Old Trafford is one of the most beloved symbols of football, and it attracts thousands of turists every day. Now, our site can help you visit the "Theatre of Dreams", where you can meet football royalty and experience the magical atmosphere of the "Strendford end"! Book you visit with us today!
+        </p>
+    </div>
+</div>
+<div class="card mb-3" style="width: 500px; display: inline-block">
+    <img class="card-img-top" width="500px" height="350px" src="/images/Manchester_United_Panorama_(8051523746).jpg" alt="Card image cap">
+    <div class="card-body" >
+        <h5 class="card-title">Book your trip with ManUtdFan.com</h5>
+        <p class="card-text">Experience the magic of Old Trafford by visiting the stadium with us! Follows in the footsteps of legends as you visit the club museum, the locker room, as well as all the other amazing attractions the "Theatre of Dreams" can offer! Book your visit today! </p>
+    </div>
+</div>
+
+<div th:object="${addStadiumVisitBindingModel}" class="card mb-3" style="width: 500px; display: inline-block">
+    <img class="card-img-top" width="500px" height="350px" src="/images/gettyimages-943836-scaled.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Enter the details for your visit</h5>
+        <form th:method="post", th:action="@{/stadium}">
+            <div class="mb-3">
+                <label for="dateInput" class="form-label">Date</label>
+                <input type="date" th:field="*{date}" th:errorclass="is-invalid" class="form-control" id="dateInput" placeholder="mm/dd/yyyy">
+                <small id="dateError"
+                       class="invalid-feedback form-text rounded">Add a valid date, present or future!</small>
+            </div>
+            <div class="mb-3">
+                <label for="visitorsInput" class="form-label">Number of visitors</label>
+                <input type="number" th:field="*{visitors}" th:errorclass="is-invalid" class="form-control" id="visitorsInput" placeholder="Enter amount of visitors">
+                <small id="visitorsError"
+                       class="invalid-feedback form-text rounded">Add a valid number of visitors!</small>
+            </div>
+            <div class="mb-3">
+                <label for="additionalInformation" class="form-label">Additional information</label>
+                <textarea name="additionalInformation" class="form-control" id="additionalInformation" placeholder="Enter additional information"></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark">Book visit</button>
+        </form>
+    </div>
+</div>
+<div class="card mb-3" style="width: 500px; display: inline-block">
+    <img class="card-img-top" width="500px" height="350px" src="/images/Manchester-United-Football-Club-MUFC-VIP-Tour-of-Museum-©-Manchester-United-Football-Club-Limited-526x350.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Visits booked through our website</h5>
+        <ul>
+            <li th:each="aVisit : ${visits}" th:text="|User: ${aVisit.username} Number of visitors: ${aVisit.visitors} Date: ${aVisit.date}|"></li>
+        </ul>
+    </div>
+</div>
+
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

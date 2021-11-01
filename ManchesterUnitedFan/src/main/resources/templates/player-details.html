@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body th:object="${player}">
+<header th:replace="/fragments/common :: navbar">
+</header>
+<img th:src="*{imgUrl}" alt="Card image cap">
+<div class="bg-light" style="display: inline-block" >
+    <p th:text="|Player name: ${player.firstName ?: ''} ${player.lastName}|"></p>
+    <p th:text="|Position: ${player.position.name()}|"></p>
+    <p th:text="|Nationality: ${player.nationality.name()}|"></p>
+    <p th:text="|Age: ${player.age}|"></p>
+    <p th:text="|Squad number: ${player.squadNumber}|"></p>
+    <p th:text="|Quote: ${player.description}|"></p>
+</div>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

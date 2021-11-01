@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body th:object="${article}">
+<header th:replace="/fragments/common :: navbar">
+</header>
+<h5 th:text="*{title}"></h5>
+<img th:src="${article.imgUrl ?: '/img/logo.png' }" width="600" height="450" alt="Card image cap">
+<div class="bg-light" style="display: inline-block" >
+    <p th:text="|Created: *{created}|"></p>
+    <p th:text="|Last modified: *{updated}|"></p>
+    <p th:text="*{text}"></p>
+</div>
+<form th:method="get" style="display: inline-block" th:action="@{/news/edit/{id}(id=*{id})}">
+    <button class="btn btn-dark" type="submit">Edit</button>
+</form>
+<form th:method="delete" style="display: inline-block" th:action="@{/news/delete/{id}(id=*{id})}">
+   <button class="btn btn-dark" type="submit">Delete</button>
+</form>
+
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>
