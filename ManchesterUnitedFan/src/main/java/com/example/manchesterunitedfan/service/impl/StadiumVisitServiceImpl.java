@@ -7,8 +7,6 @@ import com.example.manchesterunitedfan.repository.StadiumVisitRepository;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
 import com.example.manchesterunitedfan.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,16 +25,9 @@ public class StadiumVisitServiceImpl implements StadiumVisitService {
     }
 
     @Override
-    public void addStadiumVisit(AddStadiumVisitServiceModel serviceModel) {
+    public void addStadiumVisit(AddStadiumVisitServiceModel serviceModel, String username) {
         StadiumVisitEntity visit = modelMapper.map(serviceModel, StadiumVisitEntity.class);
-        Object principal = SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
-        String username = "";
-        if (principal instanceof UserDetails) {
-            username = ((UserDetails)principal). getUsername();
-        } else {
-            username = principal. toString();
-        }
-        visit.setUser(userService.findUserByUserName(username));
+        visit.setUser(userService.findUserEntityByUsername(username));
         stadiumVisitRepository.save(visit);
     }
 

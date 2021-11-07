@@ -27,6 +27,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/", "/users/login", "/users/register").permitAll()
+                //can be done without .access, check out luchob github
                 .antMatchers("/news/add").access("hasRole('ADMIN')")
                 .antMatchers("/**").authenticated()
                 .and()

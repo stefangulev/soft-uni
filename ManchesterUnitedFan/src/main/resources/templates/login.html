@@ -6,10 +6,12 @@
 <header th:replace="/fragments/common :: navbar">
 </header>
 <div class="bg-light rounded">
+  <small th:if="${invalid_credentials}" id="invalidCredentials"
+         class="form-text rounded text-danger">Invalid credentials!</small>
 <form th:action="@{/users/login}" th:method="post">
 <div class="mb-3">
   <label for="usernameInput" class="form-label">Username</label>
-  <input type="text" name="username" class="form-control" id="usernameInput" placeholder="Enter username">
+  <input type="text" name="username" th:value="${username}" class="form-control" id="usernameInput" placeholder="Enter username">
 </div>
 <div class="mb-3">
   <label for="passwordInput" class="form-label">Password</label>

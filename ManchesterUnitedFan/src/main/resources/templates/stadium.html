@@ -15,6 +15,7 @@
         </p>
     </div>
 </div>
+<div>
 <div class="card mb-3" style="width: 500px; display: inline-block">
     <img class="card-img-top" width="500px" height="350px" src="/images/Manchester_United_Panorama_(8051523746).jpg" alt="Card image cap">
     <div class="card-body" >
@@ -56,6 +57,7 @@
             <li th:each="aVisit : ${visits}" th:text="|User: ${aVisit.username} Number of visitors: ${aVisit.visitors} Date: ${aVisit.date}|"></li>
         </ul>
     </div>
+</div>
 </div>
 
 <footer th:replace="/fragments/common :: footer">

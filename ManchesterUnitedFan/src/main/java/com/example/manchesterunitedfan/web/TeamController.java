@@ -26,4 +26,14 @@ public class TeamController {
         model.addAttribute("player", playerService.findPlayerById(id));
         return "player-details";
     }
+    @GetMapping("/standings")
+    public String getStandings() {
+
+        return "standings";
+    }
+    @GetMapping("/matches")
+    public String getMatches(){
+        return "matches";
+    }
+
 }

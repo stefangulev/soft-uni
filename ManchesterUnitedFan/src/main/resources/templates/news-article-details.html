@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="/fragments/common :: head">
 </head>
 <body th:object="${article}">
@@ -12,13 +13,14 @@
     <p th:text="|Last modified: *{updated}|"></p>
     <p th:text="*{text}"></p>
 </div>
+<th:block sec:authorize="hasRole('ADMIN')">
 <form th:method="get" style="display: inline-block" th:action="@{/news/edit/{id}(id=*{id})}">
     <button class="btn btn-dark" type="submit">Edit</button>
 </form>
 <form th:method="delete" style="display: inline-block" th:action="@{/news/delete/{id}(id=*{id})}">
    <button class="btn btn-dark" type="submit">Delete</button>
 </form>
-
+</th:block>
 <footer th:replace="/fragments/common :: footer">
 </footer>
 <script th:replace="/fragments/common :: script"></script>

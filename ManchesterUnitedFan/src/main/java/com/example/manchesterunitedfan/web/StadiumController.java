@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/stadium")
@@ -34,7 +35,8 @@ public class StadiumController {
     }
     @PostMapping
     public String postStadium(@Valid AddStadiumVisitBindingModel addStadiumVisitBindingModel,
-                              BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                              BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                              Principal principal) {
 
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addStadiumVisitBindingModel", addStadiumVisitBindingModel);
@@ -42,7 +44,7 @@ public class StadiumController {
             return "redirect:stadium";
         }
 
-        stadiumVisitService.addStadiumVisit(modelMapper.map(addStadiumVisitBindingModel, AddStadiumVisitServiceModel.class));
+        stadiumVisitService.addStadiumVisit(modelMapper.map(addStadiumVisitBindingModel, AddStadiumVisitServiceModel.class), principal.getName());
         return "redirect:stadium";
     }
 

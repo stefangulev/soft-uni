@@ -5,24 +5,40 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
+<small th:if="${differentPasswords}" id="unmatchingPasswordError"
+       class="form-text rounded text-danger">Passwords not matching!</small>
+<small th:if="${userExists}" id="userExistsError"
+       class="form-text rounded text-danger">User with email or username already exists!</small>
 <div class="bg-light rounded">
-<form>
+<form th:object="${userRegisterBindingModel}" th:action="@{/users/register}" th:method="post">
 <div class="mb-3">
   <label for="usernameInput" class="form-label">Username</label>
-  <input type="text" class="form-control" id="usernameInput" placeholder="Enter username">
+  <input type="text" class="form-control" th:field="*{username}" th:errorclass="is-invalid" id="usernameInput" placeholder="Enter username">
+  <small id="usernameInputError"
+         class="invalid-feedback form-text rounded">Username must be between 5 and 30 characters!</small>
 </div>
 <div class="mb-3">
   <label for="emailInput" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+  <input type="email" class="form-control" th:field="*{email}" th:errorclass="is-invalid" id="emailInput" placeholder="name@example.com">
+  <small id="emailInputError"
+         class="invalid-feedback form-text rounded">Input must be a valid email address!</small>
 </div>
 <div class="mb-3">
   <label for="passwordInput" class="form-label">Password</label>
-  <input type="password" class="form-control" id="passwordInput" placeholder="Enter password">
+  <input type="password" class="form-control" th:field="*{password}" th:errorclass="is-invalid"  id="passwordInput" placeholder="Enter password">
+  <small id="passwordInputError"
+         class="invalid-feedback form-text rounded">Password must contain at least 3 characters!</small>
 </div>
 <div class="mb-3">
   <label for="confirmPasswordInput" class="form-label">Confirm password</label>
-  <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Enter password">
+  <input type="password" class="form-control" th:field="*{confirmPassword}" th:errorclass="is-invalid" id="confirmPasswordInput" placeholder="Enter password">
+  <small id="confirmPasswordInputError"
+         class="invalid-feedback form-text rounded">Password must contain at least 3 characters!</small>
 </div>
+  <div class="mb-3">
+    <label for="imageUrlInput" class="form-label">Profile picture URL</label>
+    <input type="text" class="form-control" th:field="*{imgUrl}" id="imageUrlInput" placeholder="Enter image URL">
+  </div>
   <button type="submit" class="btn btn-dark">Register</button>
 </form>
 </div>

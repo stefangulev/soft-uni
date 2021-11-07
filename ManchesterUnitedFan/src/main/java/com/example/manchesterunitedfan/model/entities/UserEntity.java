@@ -10,6 +10,7 @@ public class UserEntity extends BaseEntity{
     private String username;
     private String password;
     private String email;
+    private String imgUrl;
     private Set<UserRoleEntity> role = new HashSet<>();
 
     @Column(nullable = false, unique = true)
@@ -40,8 +41,15 @@ public class UserEntity extends BaseEntity{
         this.email = email;
         return this;
     }
+    @Column(name = "img_url")
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
-
+    public UserEntity setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+        return this;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Column(nullable = false)
