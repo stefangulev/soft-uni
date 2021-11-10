@@ -176,3 +176,26 @@
 </details> 
 <hr />
 <!-- Spring Data End -->
+ <!-- Spring Fundamentals Start -->
+<hr />
+<!-- Summary Begin -->
+<details>
+<summary> Click for Details
+<table border="0" width="100%" cellspacing="1" cellpadding="3" align="center">
+<tbody>
+<tr><th align="center" width="50%">Spring Fundamentanls - September 2021: <br /> 
+14/09/2021 - 24/10/2021</th><th width="40%">Grade: 6.00 (out of 6.00)<br /> Issue Date: 03/11/2021</th><th>
+<p><a title="Spring Fundamentals" href="https://softuni.bg/certificates/details/117503/1e85f9d4" target="_blank">Certificate</a></p>
+</th></tr>
+</tbody>
+</table>
+</summary>
+<!-- Summary End -->
+<!-- Course Body -->
+<tr>
+<td width="50%">
+<p><a title="Spring Fundamentals Course Overview" href="https://github.com/stefangulev/soft-uni/tree/main/spring-fundamentals" target="_blank">Spring Fundamentals Course Overview</a></p>
+</details> 
+<hr />
+<!-- Spring Fundamentals End -->
+
