@@ -71,7 +71,7 @@
           </ul>
         </li>
         <li class="nav-item col-md-4">
-          <a class="nav-link text-white active h6" href="/albums/add">History</a>
+          <a class="nav-link text-white active h6" href="/store">Store</a>
         </li>
         <li class="nav-item col-md-4">
           <a class="nav-link text-white active h6" href="/stadium">Stadium</a>
@@ -79,6 +79,9 @@
         <li class="nav-item col-md-4">
           <a class="nav-link text-white active h6" href="/albums/add">About</a>
         </li>
+            <li class="nav-item col-md-4" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link text-white active h6" href="/stats">Stats</a>
+            </li>
         <li class="nav-item col-md-4">
           <form th:action="@{/users/logout}" th:method="post">
           <button type="submit" class="btn btn-link text-white nav-link ">Logout</button>

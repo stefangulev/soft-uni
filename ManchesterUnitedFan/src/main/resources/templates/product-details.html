@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body th:object="${product}">
+<header th:replace="/fragments/common :: navbar">
+</header>
+<img width="900px" height="900px" th:src="${product.imgUrl ?: 'https://cdn.shopify.com/s/files/1/0986/0842/products/21XMEfB8BFL.gif?v=1571515951'}" alt="Product image">
+<div class="bg-light" style="display: inline-block" >
+  <p th:text="|Product name: *{name}|"></p>
+  <p th:text="|Price: *{price} USD|"></p>
+  <p th:text="|Quantity: *{quantity}|"></p>
+  <form th:method="post" style="display: inline-block" th:action="@{/store/buy/{id}(id=*{id})}">
+    <button th:unless="${outOfStock}" class="btn btn-dark" type="submit">Buy</button>
+  </form>
+
+  <th:block sec:authorize="hasRole('ADMIN')">
+    <form th:method="get" style="display: inline-block" th:action="@{/store/edit/{id}(id=*{id})}">
+      <button class="btn btn-dark" type="submit">Edit</button>
+    </form>
+    <form th:method="delete" style="display: inline-block" th:action="@{/store/delete/{id}(id=*{id})}">
+      <button class="btn btn-dark" type="submit">Delete</button>
+    </form>
+  </th:block>
+  <small th:if="${insufficientFunds}" id="insufficientFunds"
+         class="form-text rounded text-danger">Cannot buy product! Insufficient funds!</small>
+  <small th:if="${outOfStock}" id="outOfStock"
+         class="form-text rounded text-danger">Cannot buy product! Product is out of stock!</small>
+</div>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

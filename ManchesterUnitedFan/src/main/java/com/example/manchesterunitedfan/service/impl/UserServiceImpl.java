@@ -1,18 +1,20 @@
 package com.example.manchesterunitedfan.service.impl;
 
+import com.example.manchesterunitedfan.model.entities.ProductEntity;
 import com.example.manchesterunitedfan.model.entities.UserEntity;
+import com.example.manchesterunitedfan.model.entities.UserRoleEntity;
 import com.example.manchesterunitedfan.model.enums.UserRoleEnum;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
 import com.example.manchesterunitedfan.model.view.UserProfileView;
 import com.example.manchesterunitedfan.repository.UserRepository;
 import com.example.manchesterunitedfan.repository.UserRoleRepository;
+import com.example.manchesterunitedfan.service.ProductService;
 import com.example.manchesterunitedfan.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,13 +28,15 @@ public class UserServiceImpl implements UserService {
     private final ManUtdFanUserService manUtdFanUserService;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private final ProductService productService;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ManUtdFanUserService manUtdFanUserService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ManUtdFanUserService manUtdFanUserService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, ProductService productService) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.manUtdFanUserService = manUtdFanUserService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
+        this.productService = productService;
     }
 
     @Override
@@ -50,7 +54,8 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity().setUsername(userRegisterServiceModel.getUsername())
                 .setPassword(passwordEncoder.encode(userRegisterServiceModel.getPassword()))
                 .setEmail(userRegisterServiceModel.getEmail())
-                .setImgUrl(userRegisterServiceModel.getImgUrl());
+                .setImgUrl(userRegisterServiceModel.getImgUrl())
+                .setAccountBalance(userRegisterServiceModel.getAccountBalance());
 
         if(userRepository.count() == 0) {
             userEntity.getRole().add(userRoleRepository.findByName(UserRoleEnum.ADMIN));
@@ -78,5 +83,23 @@ public class UserServiceImpl implements UserService {
                 userRepository.findByUsername(name).orElse(null);
       user.setImgUrl(serviceModel.getImgUrl()).setPassword(passwordEncoder.encode(serviceModel.getPassword()));
       userRepository.save(user);
+    }
+
+    @Override
+    public boolean isAdmin(String username) {
+        Optional<UserEntity> byUsername = userRepository.findByUsername(username);
+        if(byUsername.isEmpty()) {
+            return false;
+        }
+      return byUsername.get().getRole().stream().map(UserRoleEntity::getName).anyMatch(r -> r == UserRoleEnum.ADMIN);
+    }
+
+    @Override
+    public void buyProduct(UserEntity buyer, ProductEntity product) {
+        buyer.getOwnedItems().add(product);
+        buyer.setAccountBalance(buyer.getAccountBalance().subtract(product.getPrice()));
+        userRepository.save(buyer);
+        productService.soldProduct(product);
+
     }
 }

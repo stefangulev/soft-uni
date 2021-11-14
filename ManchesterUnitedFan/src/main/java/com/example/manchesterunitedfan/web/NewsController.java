@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/news")
@@ -74,9 +75,10 @@ public class NewsController {
     }
 
 
+    @PreAuthorize("@userServiceImpl.isAdmin(#principal.name)")
     @PatchMapping("/edit/{id}")
     public String patchEdit(@PathVariable Long id, @Valid EditArticleBindingModel editArticleBindingModel,
-                            BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+                            BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) {
 
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("article", editArticleBindingModel);
@@ -88,8 +90,10 @@ public class NewsController {
 
         return "redirect:/news";
     }
+
+    @PreAuthorize("@userServiceImpl.isAdmin(#principal.name)")
     @DeleteMapping("/delete/{id}")
-    public String deleteArticle(@PathVariable Long id) {
+    public String deleteArticle(@PathVariable Long id, Principal principal) {
         newsArticleService.deleteArticle(id);
         return "redirect:/news";
     }

@@ -1,5 +1,6 @@
 package com.example.manchesterunitedfan.service;
 
+import com.example.manchesterunitedfan.model.entities.ProductEntity;
 import com.example.manchesterunitedfan.model.entities.UserEntity;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
@@ -10,6 +11,8 @@ public interface UserService {
     UserEntity findUserEntityByUsernameOrEmail(String username, String email);
     void register(UserRegisterServiceModel userRegisterServiceModel);
     UserProfileView findProfileViewByUsername(String username);
-
     void updateProfile(UpdateProfileServiceModel serviceModel, String name);
+    boolean isAdmin(String username);
+
+    void buyProduct(UserEntity buyer, ProductEntity product);
 }

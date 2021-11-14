@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface StadiumVisitRepository extends JpaRepository<StadiumVisitEntity, Long> {
     List<StadiumVisitEntity> findAllByOrderByDate();
+    List<StadiumVisitEntity> findAllByUser_UsernameOrderByDate(String username);
 }

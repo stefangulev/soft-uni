@@ -5,7 +5,7 @@
 <body th:object="${player}">
 <header th:replace="/fragments/common :: navbar">
 </header>
-<img th:src="*{imgUrl}" alt="Card image cap">
+<img th:src="*{imgUrl}" alt="Player image">
 <div class="bg-light" style="display: inline-block" >
     <p th:text="|Player name: ${player.firstName ?: ''} ${player.lastName}|"></p>
     <p th:text="|Position: ${player.position.name()}|"></p>

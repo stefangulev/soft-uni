@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+
+<div th:each="aProduct : ${products}" class="card" style="width: 18rem; display: inline-block">
+    <img class="card-img-top" width="286px" height="286px" th:src="${aProduct.imgUrl ?: 'https://cdn.shopify.com/s/files/1/0986/0842/products/21XMEfB8BFL.gif?v=1571515951'}" alt="Product image">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${aProduct.name}"></h5>
+        <p class="card-text" th:text="|${aProduct.price} USD|"></p>
+        <a th:href="@{/store/details/{id}(id=${aProduct.id})}" class="btn btn-primary">Details</a>
+    </div>
+</div>
+
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

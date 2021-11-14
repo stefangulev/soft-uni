@@ -1,7 +1,10 @@
 package com.example.manchesterunitedfan.model.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,6 +14,8 @@ public class UserEntity extends BaseEntity{
     private String password;
     private String email;
     private String imgUrl;
+    private BigDecimal accountBalance;
+    private List<ProductEntity> ownedItems = new ArrayList<>();
     private Set<UserRoleEntity> role = new HashSet<>();
 
     @Column(nullable = false, unique = true)
@@ -59,6 +64,26 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setRole(Set<UserRoleEntity> role) {
         this.role = role;
+        return this;
+    }
+
+    @Column(name = "account_balance", nullable = false)
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public UserEntity setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
+        return this;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    public List<ProductEntity> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public UserEntity setOwnedItems(List<ProductEntity> ownedItems) {
+        this.ownedItems = ownedItems;
         return this;
     }
 }

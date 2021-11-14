@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,5 +40,25 @@ public class StadiumVisitServiceImpl implements StadiumVisitService {
             return view;
                 }
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StadiumVisitView> findVisitsByUsername(String username) {
+        return stadiumVisitRepository.findAllByUser_UsernameOrderByDate(username)
+                .stream().map(s -> modelMapper.map(s, StadiumVisitView.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteVisit(Long id) {
+        stadiumVisitRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean isOwner(String username, Long id) {
+        Optional<StadiumVisitEntity> byId = stadiumVisitRepository.findById(id);
+        if (byId.isEmpty()) {
+            return false;
+        }
+        return byId.get().getUser().getUsername().equals(username);
     }
 }

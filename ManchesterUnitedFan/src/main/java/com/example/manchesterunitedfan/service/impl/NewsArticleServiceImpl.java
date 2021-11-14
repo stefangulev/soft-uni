@@ -53,4 +53,5 @@ public class NewsArticleServiceImpl implements NewsArticleService {
     public void deleteArticle(Long id) {
         newsArticleRepository.deleteById(id);
     }
+
 }

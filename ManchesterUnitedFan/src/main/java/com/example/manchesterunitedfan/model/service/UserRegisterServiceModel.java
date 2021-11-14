@@ -1,10 +1,13 @@
 package com.example.manchesterunitedfan.model.service;
 
+import java.math.BigDecimal;
+
 public class UserRegisterServiceModel {
     private String username;
     private String password;
     private String email;
     private String imgUrl;
+    private BigDecimal accountBalance;
 
     public String getUsername() {
         return username;
@@ -39,6 +42,15 @@ public class UserRegisterServiceModel {
 
     public UserRegisterServiceModel setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public UserRegisterServiceModel setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
         return this;
     }
 }

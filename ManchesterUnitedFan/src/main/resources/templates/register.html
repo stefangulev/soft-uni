@@ -36,9 +36,16 @@
          class="invalid-feedback form-text rounded">Password must contain at least 3 characters!</small>
 </div>
   <div class="mb-3">
+    <label for="accountBalanceInput" class="form-label">Initial account balance</label>
+    <input type="number" class="form-control" th:field="*{accountBalance}" th:errorclass="is-invalid"  id="accountBalanceInput" placeholder="Enter account balance">
+    <small id="accountBalanceInputError"
+           class="invalid-feedback form-text rounded">Account balance must be 0 or higher!</small>
+  </div>
+  <div class="mb-3">
     <label for="imageUrlInput" class="form-label">Profile picture URL</label>
     <input type="text" class="form-control" th:field="*{imgUrl}" id="imageUrlInput" placeholder="Enter image URL">
   </div>
+
   <button type="submit" class="btn btn-dark">Register</button>
 </form>
 </div>

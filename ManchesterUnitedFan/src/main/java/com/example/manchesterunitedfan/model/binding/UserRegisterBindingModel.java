@@ -1,9 +1,8 @@
 package com.example.manchesterunitedfan.model.binding;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 
 public class UserRegisterBindingModel {
     private String username;
@@ -11,6 +10,7 @@ public class UserRegisterBindingModel {
     private String confirmPassword;
     private String email;
     private String imgUrl;
+    private BigDecimal accountBalance;
 
     @NotBlank
     @Size(min = 5, max= 30)
@@ -62,6 +62,17 @@ public class UserRegisterBindingModel {
 
     public UserRegisterBindingModel setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
+    }
+
+    @NotNull
+    @Positive
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public UserRegisterBindingModel setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
         return this;
     }
 }

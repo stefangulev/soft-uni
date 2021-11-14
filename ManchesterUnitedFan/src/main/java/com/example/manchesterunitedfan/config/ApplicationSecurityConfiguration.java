@@ -23,12 +23,13 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        TODO add more role restrictions
+//        TODO check periodically if more restrictions are to be added
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/login", "/users/register").anonymous()
                 //can be done without .access, check out luchob github
-                .antMatchers("/news/add").access("hasRole('ADMIN')")
+                .antMatchers("/news/add", "/news/edit/{id}", "/stats").access("hasRole('ADMIN')")
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()

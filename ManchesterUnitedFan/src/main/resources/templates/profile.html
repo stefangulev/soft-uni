@@ -18,12 +18,28 @@
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">Name</label><div class="form-control" th:text="*{username}"></div></div>
                         <div class="col-md-6"><label class="labels">Email</label><div class="form-control" th:text="*{email}"></div></div>
+                        <div class="col-md-6"><label class="labels">Account balance</label><div class="form-control" th:text="*{accountBalance}"></div></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Roles</label><div class="form-control" th:each="aRole : *{role}" th:text="${aRole.name}"></div></div>
                 </div>
+                <div th:unless="${stadiumVisits.isEmpty()}" class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Stadium visits</label><div class="form-control" th:each="aVisit : ${stadiumVisits}">
+                        <p th:text="|Number of visitors: ${aVisit.visitors} Date: ${aVisit.date}|"></p>
+                        <form th:method="delete" th:action="@{/stadium/delete/{id}(id=${aVisit.id})}">
+                            <button class="btn btn-dark" type="submit">Cancel</button>
+                        </form></div>
+                    </div>
+                </div>
+                <div th:unless="${user.ownedItems.isEmpty()}" class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Owned products</label><div class="form-control" style="display: inline-block" th:each="aProduct : *{ownedItems}">
+                        <img class="card-img-top" width="286px" height="286px" th:src="${aProduct.imgUrl ?: 'https://cdn.shopify.com/s/files/1/0986/0842/products/21XMEfB8BFL.gif?v=1571515951'}" alt="Product image">
+                        <h5 class="card-title" th:text="${aProduct.name}"></h5>
+                    </div>
+                </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="p-3 py-5">
                 <form th:action="@{/users/profile}" th:method="patch">

@@ -1,8 +1,12 @@
 package com.example.manchesterunitedfan.model.view;
 
+import com.example.manchesterunitedfan.model.entities.ProductEntity;
 import com.example.manchesterunitedfan.model.entities.UserRoleEntity;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserProfileView {
@@ -10,7 +14,9 @@ public class UserProfileView {
     private String password;
     private String email;
     private String imgUrl;
-    private Set<UserRoleEntity> role = new HashSet<>();
+    private Set<UserRoleView> role = new HashSet<>();
+    private BigDecimal accountBalance;
+    private List<ProductCardView> ownedItems = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -48,12 +54,30 @@ public class UserProfileView {
         return this;
     }
 
-    public Set<UserRoleEntity> getRole() {
+    public Set<UserRoleView> getRole() {
         return role;
     }
 
-    public UserProfileView setRole(Set<UserRoleEntity> role) {
+    public UserProfileView setRole(Set<UserRoleView> role) {
         this.role = role;
+        return this;
+    }
+
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
+
+    public UserProfileView setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
+        return this;
+    }
+
+    public List<ProductCardView> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public UserProfileView setOwnedItems(List<ProductCardView> ownedItems) {
+        this.ownedItems = ownedItems;
         return this;
     }
 }

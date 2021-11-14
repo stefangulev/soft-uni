@@ -9,8 +9,8 @@
 <h5 th:text="*{title}"></h5>
 <img th:src="${article.imgUrl ?: '/img/logo.png' }" width="600" height="450" alt="Card image cap">
 <div class="bg-light" style="display: inline-block" >
-    <p th:text="|Created: *{created}|"></p>
-    <p th:text="|Last modified: *{updated}|"></p>
+    <p th:text="|Created: ${#strings.replace(article.created, 'T', ' ')}|"></p>
+    <p th:text="|Last modified: ${#strings.replace(article.updated, 'T', ' ')}|"></p>
     <p th:text="*{text}"></p>
 </div>
 <th:block sec:authorize="hasRole('ADMIN')">

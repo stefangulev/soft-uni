@@ -4,6 +4,7 @@ import com.example.manchesterunitedfan.model.binding.UpdateProfileBindingModel;
 import com.example.manchesterunitedfan.model.binding.UserRegisterBindingModel;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
+import com.example.manchesterunitedfan.service.StadiumVisitService;
 import com.example.manchesterunitedfan.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -21,10 +22,12 @@ import java.security.Principal;
 public class UserController {
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final StadiumVisitService stadiumVisitService;
 
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, StadiumVisitService stadiumVisitService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.stadiumVisitService = stadiumVisitService;
     }
 
     @GetMapping("/register")
@@ -85,6 +88,7 @@ public class UserController {
     @GetMapping("/profile")
     public String getProfile(Model model, Principal principal) {
        model.addAttribute("user", userService.findUserEntityByUsername(principal.getName()));
+       model.addAttribute("stadiumVisits", stadiumVisitService.findVisitsByUsername(principal.getName()));
        if(!model.containsAttribute("differentPasswords")) {
            model.addAttribute("differentPasswords", false);
        }

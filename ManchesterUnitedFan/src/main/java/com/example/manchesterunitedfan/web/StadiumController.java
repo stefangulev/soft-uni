@@ -4,13 +4,11 @@ import com.example.manchesterunitedfan.model.binding.AddStadiumVisitBindingModel
 import com.example.manchesterunitedfan.model.service.AddStadiumVisitServiceModel;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -51,5 +49,12 @@ public class StadiumController {
     @ModelAttribute
     public AddStadiumVisitBindingModel getAddStadiumVisitBindingModel() {
         return new AddStadiumVisitBindingModel();
+    }
+
+    @PreAuthorize("@stadiumVisitServiceImpl.isOwner(#principal.name, #id)")
+    @DeleteMapping("/delete/{id}")
+    public String deleteVisit(@PathVariable Long id, Principal principal) {
+        stadiumVisitService.deleteVisit(id);
+        return "redirect:/users/profile";
     }
 }
