@@ -1,7 +1,11 @@
 package com.example.manchesterunitedfan.web;
 
-import com.example.manchesterunitedfan.model.binding.UpdateProfileBindingModel;
+import com.example.manchesterunitedfan.model.binding.ChangePasswordBindingModel;
+import com.example.manchesterunitedfan.model.binding.DepositFundsBindingModel;
+import com.example.manchesterunitedfan.model.binding.UpdateProfilePictureBindingModel;
 import com.example.manchesterunitedfan.model.binding.UserRegisterBindingModel;
+import com.example.manchesterunitedfan.model.service.ChangePasswordServiceModel;
+import com.example.manchesterunitedfan.model.service.DepositFundsServiceModel;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
@@ -92,31 +96,78 @@ public class UserController {
        if(!model.containsAttribute("differentPasswords")) {
            model.addAttribute("differentPasswords", false);
        }
+        if(!model.containsAttribute("passwordChanged")) {
+            model.addAttribute("passwordChanged", false);
+        }
+        if(!model.containsAttribute("successfulDeposit")) {
+            model.addAttribute("successfulDeposit", false);
+        }
+        if(!model.containsAttribute("pictureUpdated")) {
+            model.addAttribute("pictureUpdated", false);
+        }
         return "profile";
     }
-    @PatchMapping("/profile")
-    public String updateProfile(@Valid UpdateProfileBindingModel updateProfileBindingModel,
-                                BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                Principal principal) {
+    @PatchMapping("/profile/change-password")
+    public String changePassword(@Valid ChangePasswordBindingModel changePasswordBindingModel,
+                                 BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                                 Principal principal) {
 
         if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("updateProfileBindingModel", updateProfileBindingModel);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.updateProfileBindingModel", bindingResult);
-            return "redirect:profile";
+            redirectAttributes.addFlashAttribute("changePasswordBindingModel", changePasswordBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.changePasswordBindingModel", bindingResult);
+            return "redirect:/users/profile";
         }
-        if(!updateProfileBindingModel.getPassword().equals(updateProfileBindingModel.getConfirmPassword())) {
-            redirectAttributes.addFlashAttribute("updateProfileBindingModel", updateProfileBindingModel);
+        if(!changePasswordBindingModel.getPassword().equals(changePasswordBindingModel.getConfrimPassword())) {
+            redirectAttributes.addFlashAttribute("changePasswordBindingModel", changePasswordBindingModel);
             redirectAttributes.addFlashAttribute("differentPasswords", true);
-            return "redirect:profile";
+            return "redirect:/users/profile";
         }
 
-        userService.updateProfile(modelMapper.map(updateProfileBindingModel,
-                UpdateProfileServiceModel.class), principal.getName());
-
-        return "redirect:profile";
+        userService.changePassword(modelMapper.map(changePasswordBindingModel,
+                ChangePasswordServiceModel.class), principal.getName());
+        redirectAttributes.addFlashAttribute("passwordChanged", true);
+        return "redirect:/users/profile";
     }
     @ModelAttribute
-    public UpdateProfileBindingModel getUpdateProfileBindingModel() {
-        return new UpdateProfileBindingModel();
+    public ChangePasswordBindingModel getUpdateProfileBindingModel() {
+        return new ChangePasswordBindingModel();
     }
+
+    @PatchMapping("/profile/deposit")
+    public String depositFunds(@Valid DepositFundsBindingModel depositFundsBindingModel,
+                               BindingResult bindingResult, RedirectAttributes redirectAttributes, Principal principal) {
+        if(bindingResult.hasErrors()) {
+           redirectAttributes.addFlashAttribute("depositFundsBindingModel", depositFundsBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.depositFundsBindingModel", bindingResult);
+            return "redirect:/users/profile";
+        }
+        userService.depositFunds(modelMapper.map(depositFundsBindingModel, DepositFundsServiceModel.class), principal.getName());
+        redirectAttributes.addFlashAttribute("successfulDeposit", true);
+        return "redirect:/users/profile";
+    }
+    @ModelAttribute
+    public DepositFundsBindingModel getDepositFundsBindingModel() {
+        return new DepositFundsBindingModel();
+    }
+
+    @PatchMapping("/profile/update-picture")
+    public String updatePicture(@Valid UpdateProfilePictureBindingModel updateProfilePictureBindingModel,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                                Principal principal) {
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("updateProfilePictureBindingModel", updateProfilePictureBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.updateProfilePictureBindingModel", bindingResult);
+            return "redirect:/users/profile";
+        }
+        userService.updateProfilePicture(modelMapper.map(updateProfilePictureBindingModel, UpdateProfileServiceModel.class),
+                principal.getName());
+        redirectAttributes.addFlashAttribute("pictureUpdated", true);
+        return "redirect:/users/profile";
+    }
+
+    @ModelAttribute
+    public UpdateProfilePictureBindingModel getUpdateProfilePictureBidingModel() {
+        return new UpdateProfilePictureBindingModel();
+    }
+
 }

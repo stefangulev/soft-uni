@@ -4,6 +4,8 @@ import com.example.manchesterunitedfan.model.entities.ProductEntity;
 import com.example.manchesterunitedfan.model.entities.UserEntity;
 import com.example.manchesterunitedfan.model.entities.UserRoleEntity;
 import com.example.manchesterunitedfan.model.enums.UserRoleEnum;
+import com.example.manchesterunitedfan.model.service.ChangePasswordServiceModel;
+import com.example.manchesterunitedfan.model.service.DepositFundsServiceModel;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
 import com.example.manchesterunitedfan.model.view.UserProfileView;
@@ -78,11 +80,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateProfile(UpdateProfileServiceModel serviceModel, String name) {
-      UserEntity user =
-                userRepository.findByUsername(name).orElse(null);
-      user.setImgUrl(serviceModel.getImgUrl()).setPassword(passwordEncoder.encode(serviceModel.getPassword()));
-      userRepository.save(user);
+    public void changePassword(ChangePasswordServiceModel changePasswordServiceModel, String name) {
+        UserEntity user = findUserEntityByUsername(name);
+        user.setPassword(passwordEncoder.encode(changePasswordServiceModel.getPassword()));
+        userRepository.save(user);
     }
 
     @Override
@@ -101,5 +102,19 @@ public class UserServiceImpl implements UserService {
         userRepository.save(buyer);
         productService.soldProduct(product);
 
+    }
+
+    @Override
+    public void depositFunds(DepositFundsServiceModel serviceModel, String name) {
+        UserEntity user = findUserEntityByUsername(name);
+        user.setAccountBalance(user.getAccountBalance().add(serviceModel.getDeposit()));
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateProfilePicture(UpdateProfileServiceModel serviceModel, String name) {
+        UserEntity user = findUserEntityByUsername(name);
+        user.setImgUrl(serviceModel.getImgUrl());
+        userRepository.save(user);
     }
 }
