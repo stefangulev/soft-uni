@@ -12,6 +12,8 @@ public class ProductEntity extends BaseEntity{
     private Integer quantity;
     private BigDecimal price;
     private String imgUrl;
+    private boolean disabled;
+
 
     @Column(nullable = false)
     public String getName() {
@@ -49,6 +51,15 @@ public class ProductEntity extends BaseEntity{
 
     public ProductEntity setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public ProductEntity setDisabled(boolean disabled) {
+        this.disabled = disabled;
         return this;
     }
 }

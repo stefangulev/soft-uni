@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/fragments/common :: head">
 </head>
-<body>
+<body id="standingsBody">
 <header th:replace="/fragments/common :: navbar">
 </header>
-<table class="table table-bordered table-dark" style="margin: 50px">
+<table id="standingsTable" class="table table-bordered table-dark" style="margin: 50px">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -49,6 +49,5 @@
 </table>
 <footer th:replace="/fragments/common :: footer">
 </footer>
-<script th:replace="/fragments/common :: script"></script>
 </body>
 </html>

@@ -50,7 +50,7 @@
                         <h4 class="text-right">Edit profile</h4>
                     </div>
                 <form th:action="@{/users/profile/deposit}" th:method="patch">
-                    <div class="col-md-12"><label class="labels">Deposit funds</label><input type="number" th:field="${depositFundsBindingModel.deposit}" th:errorclass="is-invalid" class="form-control" placeholder="Enter funds" value="">
+                    <div class="col-md-12"><label class="labels">Deposit funds</label><input type="text" th:field="${depositFundsBindingModel.deposit}" th:errorclass="is-invalid" class="form-control" placeholder="Enter funds" value="">
                         <small id="invalidAmount"
                                class="invalid-feedback form-text rounded text-danger">Invalid deposit amount!</small></div>
                         <div class="mt-5 text-center"><button class="btn btn-dark" type="submit">Deposit funds</button></div>

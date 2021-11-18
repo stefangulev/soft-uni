@@ -70,9 +70,22 @@
               </th:block>
           </ul>
         </li>
-        <li class="nav-item col-md-4">
-          <a class="nav-link text-white active h6" href="/store">Store</a>
-        </li>
+            <li class="nav-item dropdown col-md-4">
+                <a class="nav-link text-white active h6 dropdown-toggle" id="Store" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Store
+                </a>
+                <ul class="dropdown-menu bg-ul" aria-labelledby="navbarDropdown">
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h6" href="/store">Products</a>
+                    </li>
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="nav-item col-md-4">
+                            <a class="nav-link text-white active h6" href="/store/add-product">Add product</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </li>
         <li class="nav-item col-md-4">
           <a class="nav-link text-white active h6" href="/stadium">Stadium</a>
         </li>

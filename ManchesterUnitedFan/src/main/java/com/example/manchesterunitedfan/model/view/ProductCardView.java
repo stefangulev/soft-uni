@@ -7,6 +7,7 @@ public class ProductCardView {
     private String name;
     private BigDecimal price;
     private String imgUrl;
+    private boolean disabled;
 
     public Long getId() {
         return id;
@@ -41,6 +42,15 @@ public class ProductCardView {
 
     public ProductCardView setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        return this;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public ProductCardView setDisabled(boolean disabled) {
+        this.disabled = disabled;
         return this;
     }
 }

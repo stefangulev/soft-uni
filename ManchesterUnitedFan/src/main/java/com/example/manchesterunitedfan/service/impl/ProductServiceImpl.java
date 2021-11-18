@@ -1,14 +1,18 @@
 package com.example.manchesterunitedfan.service.impl;
 
 import com.example.manchesterunitedfan.model.entities.ProductEntity;
+import com.example.manchesterunitedfan.model.service.AddProductServiceModel;
+import com.example.manchesterunitedfan.model.service.UpdateProductServiceModel;
 import com.example.manchesterunitedfan.model.view.ProductCardView;
 import com.example.manchesterunitedfan.model.view.ProductDetailsView;
 import com.example.manchesterunitedfan.repository.ProductRepository;
 import com.example.manchesterunitedfan.service.ProductService;
+import com.example.manchesterunitedfan.service.exceptions.ProductNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -22,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductCardView> findAllProducts() {
-        return productRepository.findAll().stream()
+    public List<ProductCardView> findAllActiveProducts() {
+        return productRepository.findAll().stream().filter(p -> !p.isDisabled())
                 .map(p -> modelMapper.map(p , ProductCardView.class))
                 .collect(Collectors.toList());
     }
@@ -31,12 +35,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDetailsView getProductViewById(Long id) {
         return productRepository.findById(id)
-                .map(p -> modelMapper.map(p, ProductDetailsView.class)).orElse(null);
+                .map(p -> modelMapper.map(p, ProductDetailsView.class))
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"));
     }
 
     @Override
     public ProductEntity getProductEntityById(Long id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"));
     }
 
     @Override
@@ -44,4 +50,43 @@ public class ProductServiceImpl implements ProductService {
         product.setQuantity(product.getQuantity() - 1);
             productRepository.save(product);
     }
+
+    @Override
+    public void createProduct(AddProductServiceModel serviceModel) {
+       productRepository.save(modelMapper.map(serviceModel, ProductEntity.class));
+    }
+
+    @Override
+    public void updateProduct(UpdateProductServiceModel serviceModel) {
+        ProductEntity productEntity = productRepository.findById(serviceModel.getId())
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + serviceModel.getId() + " not found!"));
+        productEntity.setName(serviceModel.getName()).setQuantity(serviceModel.getQuantity()).setPrice(serviceModel.getPrice())
+                .setImgUrl(serviceModel.getImgUrl());
+        productRepository.save(productEntity);
+    }
+
+    @Override
+    public void disableProduct(Long id) {
+        ProductEntity productEntity = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"))
+        .setDisabled(true);
+        productRepository.save(productEntity);
+    }
+
+    @Override
+    public void enableProduct(Long id) {
+        ProductEntity productEntity = productRepository.findById(id).
+                orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"))
+                .setDisabled(false);
+        productRepository.save(productEntity);
+    }
+
+    @Override
+    public List<ProductCardView> findAllProducts() {
+        return productRepository.findAll().stream()
+                .map(p -> modelMapper.map(p, ProductCardView.class))
+                .collect(Collectors.toList());
+    }
+
+
 }

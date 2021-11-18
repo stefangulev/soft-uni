@@ -4,6 +4,7 @@ import com.example.manchesterunitedfan.model.view.PlayerCardView;
 import com.example.manchesterunitedfan.model.view.PlayerDetailsView;
 import com.example.manchesterunitedfan.repository.PlayerRepository;
 import com.example.manchesterunitedfan.service.PlayerService;
+import com.example.manchesterunitedfan.service.exceptions.PlayerNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public PlayerDetailsView findPlayerById(Long id) {
-        return modelMapper.map(playerRepository.findById(id).orElse(null), PlayerDetailsView.class);
+        return modelMapper.map(playerRepository.findById(id)
+                .orElseThrow(() -> new PlayerNotFoundException("Player with id " + id + " not found!")), PlayerDetailsView.class);
     }
 }

@@ -5,12 +5,15 @@ import com.example.manchesterunitedfan.model.binding.EditArticleBindingModel;
 import com.example.manchesterunitedfan.model.service.AddNewsServiceModel;
 import com.example.manchesterunitedfan.model.service.EditArticleServiceModel;
 import com.example.manchesterunitedfan.service.NewsArticleService;
+import com.example.manchesterunitedfan.service.exceptions.NewsArticleNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -98,6 +101,12 @@ public class NewsController {
         return "redirect:/news";
     }
 
-
+    @ExceptionHandler({NewsArticleNotFoundException.class})
+    public ModelAndView handleNewsArticleException(NewsArticleNotFoundException ex) {
+        ModelAndView modelAndView = new ModelAndView("news-article-not-found");
+        modelAndView.addObject("exMessage", ex.getMessage());
+        modelAndView.setStatus(HttpStatus.NOT_FOUND);
+        return modelAndView;
+    }
 
 }

@@ -6,6 +6,7 @@ import com.example.manchesterunitedfan.model.service.EditArticleServiceModel;
 import com.example.manchesterunitedfan.model.view.NewsArticleView;
 import com.example.manchesterunitedfan.repository.NewsArticleRepository;
 import com.example.manchesterunitedfan.service.NewsArticleService;
+import com.example.manchesterunitedfan.service.exceptions.NewsArticleNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,14 @@ public class NewsArticleServiceImpl implements NewsArticleService {
 
     @Override
     public NewsArticleView findArticleById(Long id) {
-        return modelMapper.map(newsArticleRepository.findById(id).orElse(null), NewsArticleView.class);
+        return modelMapper.map(newsArticleRepository.findById(id)
+                .orElseThrow(() -> new NewsArticleNotFoundException("News article with id " + id + " not found!"))
+                , NewsArticleView.class);
     }
 
     @Override
     public void updateNewsArticle(EditArticleServiceModel serviceModel, Long id) {
-        NewsArticleEntity newsArticleEntity = newsArticleRepository.findById(id).orElse(null)
+        NewsArticleEntity newsArticleEntity = newsArticleRepository.findById(id).orElseThrow(() -> new NewsArticleNotFoundException("News article with id " + id + " not found!"))
                 .setTitle(serviceModel.getTitle())
                 .setText(serviceModel.getText())
                 .setImgUrl(serviceModel.getImgUrl());
@@ -53,5 +56,7 @@ public class NewsArticleServiceImpl implements NewsArticleService {
     public void deleteArticle(Long id) {
         newsArticleRepository.deleteById(id);
     }
+
+
 
 }
