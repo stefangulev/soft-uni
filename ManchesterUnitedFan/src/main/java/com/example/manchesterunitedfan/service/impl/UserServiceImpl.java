@@ -13,6 +13,7 @@ import com.example.manchesterunitedfan.repository.UserRepository;
 import com.example.manchesterunitedfan.repository.UserRoleRepository;
 import com.example.manchesterunitedfan.service.ProductService;
 import com.example.manchesterunitedfan.service.UserService;
+import com.example.manchesterunitedfan.service.exceptions.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,7 +44,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findUserEntityByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("User with name " + username + " was not found!"));
     }
 
     @Override
@@ -76,7 +78,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileView findProfileViewByUsername(String username) {
-        return userRepository.findByUsername(username).map(u -> modelMapper.map(u, UserProfileView.class)).orElse(null);
+        return userRepository.findByUsername(username).map(u -> modelMapper.map(u, UserProfileView.class))
+                .orElseThrow(() -> new UserNotFoundException("User with name " + username + " was not found!"));
     }
 
     @Override

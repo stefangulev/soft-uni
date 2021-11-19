@@ -1,11 +1,12 @@
 package com.example.manchesterunitedfan.model.view;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class StadiumVisitView {
 
     private Long id;
-    private LocalDate date;
+    private LocalDateTime date;
     private Integer visitors;
     private String username;
 
@@ -18,11 +19,11 @@ public class StadiumVisitView {
         return this;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public StadiumVisitView setDate(LocalDate date) {
+    public StadiumVisitView setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }

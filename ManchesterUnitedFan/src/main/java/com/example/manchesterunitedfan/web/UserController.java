@@ -10,12 +10,14 @@ import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
 import com.example.manchesterunitedfan.service.UserService;
+import com.example.manchesterunitedfan.service.exceptions.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -168,6 +170,12 @@ public class UserController {
     @ModelAttribute
     public UpdateProfilePictureBindingModel getUpdateProfilePictureBidingModel() {
         return new UpdateProfilePictureBindingModel();
+    }
+    @ExceptionHandler({UserNotFoundException.class})
+    public ModelAndView handleUserNotFoundException(UserNotFoundException ex) {
+        ModelAndView modelAndView = new ModelAndView("user-not-found");
+        modelAndView.addObject("exMessage", ex.getMessage());
+        return modelAndView;
     }
 
 }

@@ -6,17 +6,18 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AddStadiumVisitServiceModel {
-    private LocalDate date;
+    private LocalDateTime date;
     private Integer visitors;
     private String additionalInformation;
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public AddStadiumVisitServiceModel setDate(LocalDate date) {
+    public AddStadiumVisitServiceModel setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }

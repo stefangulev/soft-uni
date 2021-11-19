@@ -31,7 +31,7 @@
         <form th:method="post", th:action="@{/stadium}">
             <div class="mb-3">
                 <label for="dateInput" class="form-label">Date</label>
-                <input type="date" th:field="*{date}" th:errorclass="is-invalid" class="form-control" id="dateInput" placeholder="mm/dd/yyyy">
+                <input type="datetime-local" th:field="*{date}" th:errorclass="is-invalid" class="form-control" id="dateInput" placeholder="mm/dd/yyyy">
                 <small id="dateError"
                        class="invalid-feedback form-text rounded">Add a valid date, present or future!</small>
             </div>
@@ -54,7 +54,7 @@
     <div class="card-body">
         <h5 class="card-title">Visits booked through our website</h5>
         <ul>
-            <li th:each="aVisit : ${visits}" th:text="|User: ${aVisit.username} Number of visitors: ${aVisit.visitors} Date: ${aVisit.date}|"></li>
+            <li th:each="aVisit : ${visits}" th:text="|User: ${aVisit.username} Number of visitors: ${aVisit.visitors} Date: ${#strings.replace(aVisit.date, 'T', ' ')}|"></li>
         </ul>
     </div>
 </div>

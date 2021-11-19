@@ -7,9 +7,12 @@ import com.example.manchesterunitedfan.repository.StadiumVisitRepository;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
 import com.example.manchesterunitedfan.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +23,7 @@ public class StadiumVisitServiceImpl implements StadiumVisitService {
     private final StadiumVisitRepository stadiumVisitRepository;
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final Logger LOGGER = LoggerFactory.getLogger(StadiumVisitServiceImpl.class);
 
     public StadiumVisitServiceImpl(StadiumVisitRepository stadiumVisitRepository, ModelMapper modelMapper, UserService userService) {
         this.stadiumVisitRepository = stadiumVisitRepository;
@@ -62,6 +66,13 @@ public class StadiumVisitServiceImpl implements StadiumVisitService {
             return false;
         }
         return byId.get().getUser().getUsername().equals(username);
+    }
+
+    @Scheduled(fixedDelay = 1800000, initialDelay = 1800000)
+    @Transactional
+    public void clearOldVisits() {
+        stadiumVisitRepository.deleteByDateBefore(LocalDateTime.now());
+        LOGGER.info("Visits cleared!");
     }
 
     }

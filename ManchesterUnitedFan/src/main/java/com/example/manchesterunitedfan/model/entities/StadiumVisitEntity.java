@@ -5,24 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "stadium_visits")
 public class StadiumVisitEntity extends BaseEntity{
-    private LocalDate date;
+    private LocalDateTime date;
     private Integer visitors;
     private String additionalInformation;
     private UserEntity user;
 
     @Column(nullable = false)
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public StadiumVisitEntity setDate(LocalDate date) {
+    public StadiumVisitEntity setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }
+
+
+
     @Column(nullable = false)
     public Integer getVisitors() {
         return visitors;

@@ -4,20 +4,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AddStadiumVisitBindingModel {
-    private LocalDate date;
+    private LocalDateTime date;
     private Integer visitors;
     private String additionalInformation;
 
+
     @NotNull
     @FutureOrPresent
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    public LocalDate getDate() {
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public AddStadiumVisitBindingModel setDate(LocalDate date) {
+    public AddStadiumVisitBindingModel setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }
