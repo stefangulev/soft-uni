@@ -1,8 +1,6 @@
 package com.example.pathfinder.model.binding;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class UserRegisterBindingModel {
     private String username;
@@ -12,8 +10,8 @@ public class UserRegisterBindingModel {
     private String password;
     private String confirmPassword;
 
-    @NotNull
-    @Size(min = 2)
+    @NotBlank
+    @Size(min = 3)
     public String getUsername() {
         return username;
     }
@@ -23,6 +21,8 @@ public class UserRegisterBindingModel {
         return this;
     }
 
+    @NotBlank
+    @Size(min = 3)
     public String getFullName() {
         return fullName;
     }
@@ -32,6 +32,7 @@ public class UserRegisterBindingModel {
         return this;
     }
 
+    @NotBlank
     @Email
     public String getEmail() {
         return email;
@@ -42,6 +43,8 @@ public class UserRegisterBindingModel {
         return this;
     }
 
+    @NotNull
+    @Positive
     public int getAge() {
         return age;
     }
@@ -50,8 +53,8 @@ public class UserRegisterBindingModel {
         this.age = age;
         return this;
     }
-    @NotNull
-    @Size(min = 2)
+    @NotBlank
+    @Size(min = 5)
     public String getPassword() {
         return password;
     }
@@ -61,6 +64,8 @@ public class UserRegisterBindingModel {
         return this;
     }
 
+    @NotBlank
+    @Size(min = 5)
     public String getConfirmPassword() {
         return confirmPassword;
     }

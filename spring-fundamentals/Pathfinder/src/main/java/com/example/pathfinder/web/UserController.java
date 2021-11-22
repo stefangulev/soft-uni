@@ -54,31 +54,38 @@ public class UserController {
         return "redirect:/";
     }
 
-    @ModelAttribute("userModel")
+    @ModelAttribute("userRegisterModel")
     public UserRegisterBindingModel registerBindModel() {
         return new UserRegisterBindingModel();
     }
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        if(!model.containsAttribute("userExists")) {
+            model.addAttribute("userExists", false);
+        }
+        if(!model.containsAttribute("differentPasswords")) {
+            model.addAttribute("differentPasswords", false);
+        }
+
         return "register";
     }
     @PostMapping("/register")
     public String submitRegister(@Valid UserRegisterBindingModel userRegisterBindingModel,
                                  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userModel", userRegisterBindingModel);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingRequest.userRegisterBindingModel");
+            redirectAttributes.addFlashAttribute("userRegisterModel", userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterModel", bindingResult);
             return "redirect:/users/register";
         }
         UserRegisterServiceModel serviceModel = modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class);
         if (userService.userExists(serviceModel)) {
-            redirectAttributes.addFlashAttribute("userModel", userRegisterBindingModel);
-//            redirectAttributes.addFlashAttribute("userExists", true);
+            redirectAttributes.addFlashAttribute("userRegisterModel", userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("userExists", true);
             return "redirect:/users/register";
         }
         if (!userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
-            redirectAttributes.addFlashAttribute("userModel", userRegisterBindingModel);
-//            redirectAttributes.addFlashAttribute("differentPasswords", true);
+            redirectAttributes.addFlashAttribute("userRegisterModel", userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("differentPasswords", true);
             return "redirect:/users/register";
         }
 
