@@ -19,13 +19,16 @@
 <!--            TODO Start from here-->
             <div class="level">
                 <p><img class="level-img" src="/images/difficulty-level.png" alt=""></p>
-                <p><img class="level-img" src="/images/difficulty-level.png" alt=""></p>
-                <p><img class="level-img" src="/images/difficulty-level.png" alt=""></p>
+                <p th:unless="${route.level.name() == 'BEGINNER'}"><img class="level-img" src="/images/difficulty-level.png" alt=""></p>
+                <p th:unless="${route.level.name() == 'INTERMEDIATE' || route.level.name() == 'BEGINNER'}"><img class="level-img" src="/images/difficulty-level.png" alt=""></p>
                 
             </div>
             <div>
                 <h4>Choose picture</h4>
-                <form action="/" method="POST" enctype="multipart/form-data">
+                <form
+                        action="/"
+                        method="POST"
+                        enctype="multipart/form-data">
                     <input  type="hidden" id="id" name="routeId">
                     <div class="form-group">
                         <label>
@@ -46,16 +49,15 @@
         </section>
         <section id="map"></section>
         <section id="video">
-            <iframe id="frame" src="https://www.youtube.com/embed/">
+            <iframe id="frame" th:src="@{'https://www.youtube.com/embed/' + *{videoUrl}}">
             </iframe>
         </section>
         <section class="route-description text-center">
             <h4>Description:</h4>
-            <p id="route-description">Description: </p>
+            <p th:text="*{description}" id="route-description"> </p>
         </section>
         <section class="gallery">
-            <img class="rounded" src="/images/pic4.jpg" height="100%" alt="">
-            <img class="rounded" src="/images/pic1.jpg" height="100%" alt="">
+            <img th:each="aPicture : *{pictures}" class="rounded" th:src="${aPicture.url}" height="100%" alt="Picture of route">
         </section>
         <section class="comments">
             <h1>Comments</h1>
