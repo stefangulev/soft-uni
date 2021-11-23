@@ -2,15 +2,15 @@ package com.example.pathfinder.model.service;
 
 public class UserLoginServiceModel {
 
-    private String username;
+    private String email;
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public UserLoginServiceModel setUsername(String username) {
-        this.username = username;
+    public UserLoginServiceModel setEmail(String email) {
+        this.email = email;
         return this;
     }
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -27,32 +28,11 @@ public class UserController {
     }
 
 
-    @ModelAttribute("userModel")
-    public UserLoginBindingModel loginBindModel() {
-        return new UserLoginBindingModel();
-    }
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-    @PostMapping("/login")
-    public String submitLogin(@Valid UserLoginBindingModel userLoginBindingModel,
-                              BindingResult bindingResult,
-                              RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userModel", userLoginBindingModel);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingRequest.userLoginBindingModel");
-            return "redirect:/users/login";
-        }
-        UserLoginServiceModel serviceModel = modelMapper.map(userLoginBindingModel, UserLoginServiceModel.class);
-        if (!userService.loginPasswordCombinationValid(serviceModel)) {
-            redirectAttributes.addFlashAttribute("userModel", userLoginBindingModel);
-            redirectAttributes.addFlashAttribute("invalidCredentials", true);
-            return "redirect:/users/login";
-        }
-        userService.login(serviceModel);
-        return "redirect:/";
-    }
+
 
     @ModelAttribute("userRegisterModel")
     public UserRegisterBindingModel registerBindModel() {
@@ -93,14 +73,10 @@ public class UserController {
         return "redirect:/users/login";
 
     }
-    @GetMapping("/logout")
-    public String logout() {
-        userService.logout();
-        return "redirect:/";
-    }
-    @GetMapping("/profile/{id}")
-    public String showProfile(@PathVariable Long id, Model model) {
-        ProfileViewModel profileViewModel = userService.showProfile(id);
+
+    @GetMapping("/profile")
+    public String showProfile(Principal principal, Model model) {
+        ProfileViewModel profileViewModel = userService.showProfile(principal.getName());
         model.addAttribute("viewModel", profileViewModel);
         return "profile";
     }

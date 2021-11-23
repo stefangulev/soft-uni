@@ -12,7 +12,7 @@ public class User extends BaseEntity{
     private String fullName;
     private Integer age;
     private String email;
-    private Set<Role> role = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
     private LevelEnum level;
 
     @Column(unique = true, nullable = false)
@@ -43,12 +43,12 @@ public class User extends BaseEntity{
         return this;
     }
     @ManyToMany(fetch = FetchType.EAGER)
-    public Set<Role> getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public User setRole(Set<Role> role) {
-        this.role = role;
+    public User setRoles(Set<Role> roles) {
+        this.roles = roles;
         return this;
     }
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -27,29 +29,31 @@
       <li>
         <a href="/">Home</a>
       </li>
-      <th:block th:if="${!@currentUser.isLoggedIn()}">
+      <th:block sec:authorize="!isAuthenticated()">
       <li>
         <a href="/users/login">Login</a>
       </li>
       <li>
         <a href="/users/register">Register</a>
       </li>
-      <li>
       </th:block>
+      <th:block sec:authorize="isAuthenticated()">
+      <li>
         <a href="/about">About</a>
       </li>
-      <th:block th:if="${@currentUser.isLoggedIn()}">
       <li>
         <a href="/routes/add">Add new route</a>
       </li>
       <li>
-        <a th:href="@{/users/profile/{id}(id = ${@currentUser.id})}">Profile</a>
+        <a href="/users/profile">Profile</a>
       </li>
       <li>
         <a href="/admin">Admin</a>
       </li>
       <li>
-        <a href="/users/logout">Logout</a>
+        <form th:method="post" th:action="@{/users/logout}">
+          <button type="submit">Logout</button>
+        </form>
       </li>
       </th:block>
     </ul>

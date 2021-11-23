@@ -7,9 +7,6 @@ import com.example.pathfinder.model.view.ProfileViewModel;
 public interface UserService {
     void register(UserRegisterServiceModel userRegisterServiceModel);
     boolean userExists(UserRegisterServiceModel userRegisterServiceModel);
-    boolean loginPasswordCombinationValid(UserLoginServiceModel userLoginServiceModel);
-    void login(UserLoginServiceModel userLoginServiceModel);
-    void logout();
-    ProfileViewModel showProfile(Long id);
+    ProfileViewModel showProfile(String email);
 
 }
