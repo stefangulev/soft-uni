@@ -1,9 +1,6 @@
 package com.example.pathfinder.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "pictures")
@@ -22,7 +19,7 @@ public class Picture extends BaseEntity{
         this.title = title;
         return this;
     }
-    @Column(columnDefinition = "TEXT")
+    @Lob
     public String getUrl() {
         return url;
     }

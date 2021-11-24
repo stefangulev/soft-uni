@@ -14,8 +14,11 @@ public class Route extends BaseEntity{
     private String videoUrl;
     private Set<Picture> pictures;
     private Set<Category> categories;
+    private Set<Comment> comments;
 
-    @Column(name = "gpx_coordinates", columnDefinition = "LONGTEXT")
+
+    @Lob
+    @Column(name = "gpx_coordinates")
     public String getGpxCoordinates() {
         return gpxCoordinates;
     }
@@ -62,7 +65,7 @@ public class Route extends BaseEntity{
         return this;
     }
 
-    @Column(columnDefinition = "TEXT")
+    @Lob
     public String getDescription() {
         return description;
     }
@@ -89,6 +92,16 @@ public class Route extends BaseEntity{
 
     public Route setCategories(Set<Category> categories) {
         this.categories = categories;
+        return this;
+    }
+
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public Route setComments(Set<Comment> comments) {
+        this.comments = comments;
         return this;
     }
 }

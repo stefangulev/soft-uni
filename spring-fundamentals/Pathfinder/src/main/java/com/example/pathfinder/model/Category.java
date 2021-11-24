@@ -18,7 +18,7 @@ public class Category extends BaseEntity{
         this.name = name;
         return this;
     }
-    @Column(columnDefinition = "TEXT")
+    @Lob
     public String getDescription() {
         return description;
     }
