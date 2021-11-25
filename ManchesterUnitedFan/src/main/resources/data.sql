@@ -4,7 +4,7 @@ VALUES (30, 'David', 'De Gea', 'https://resources.premierleague.com/premierleagu
 INSERT INTO players (age, first_name, last_name, img_url, squad_number, position, description, nationality)
 VALUES (24, 'Dean', 'Henderson', 'https://resources.premierleague.com/premierleague/photos/players/250x250/p172649.png', 26, 'GOALKEEPER', 'I work hard every single day to be a better version of myself. At the end of the day, the only competition I’ve got is myself', 'ENGLAND');
 INSERT INTO players (age, first_name, last_name, img_url, squad_number, position, description, nationality)
-VALUES (35, 'Tom', 'Heaton', 'https://resources.premierleague.com/premierleague/photos/players/250x250/p21205.png', 26, 'GOALKEEPER', 'I still feel I’ve got an awful lot to give and I’ve got the bit between my teeth.', 'ENGLAND');
+VALUES (35, 'Tom', 'Heaton', 'https://resources.premierleague.com/premierleague/photos/players/250x250/p21205.png', 22, 'GOALKEEPER', 'I still feel I’ve got an awful lot to give and I’ve got the bit between my teeth.', 'ENGLAND');
 INSERT INTO players (age, first_name, last_name, img_url, squad_number, position, description, nationality)
 VALUES (27, 'Victor', 'Lindelof', 'https://resources.premierleague.com/premierleague/photos/players/250x250/p184667.png', 2, 'DEFENDER', 'United are one of the biggest clubs in the world and always want to win titles. That’s also my goal.', 'SWEDEN');
 INSERT INTO players (age, first_name, last_name, img_url, squad_number, position, description, nationality)

@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface NewsArticleService {
     void addArticle(AddNewsServiceModel addNewsServiceModel);
-    List<NewsArticleView> getArticles();
+    List<NewsArticleView> getArticlesOrderedByCreateDate();
     NewsArticleView findArticleById(Long id);
     void updateNewsArticle(EditArticleServiceModel map, Long id);
     void deleteArticle(Long id);
+
+    NewsArticleView findLatestArticle();
 }

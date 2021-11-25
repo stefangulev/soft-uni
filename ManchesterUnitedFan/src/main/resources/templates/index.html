@@ -5,6 +5,72 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
+
+<h1>Welcome to ManUtdFan.com</h1>
+
+<div style="display:inline-block" class="card text-center">
+    <div class="card-header">
+        Latest story
+    </div>
+    <div th:object="${latestArticle}" class="card-body">
+        <h5 class="card-title" th:text="*{title}"></h5>
+        <img th:src="${latestArticle.imgUrl ?: '/img/logo.png'}"  width="250" height="200" alt="Article image">
+        <a th:href="@{/news/details/{id}(id=*{id})}" class="btn btn-primary">Read more</a>
+        <a th:href="@{/news}" class="btn btn-primary">Check all articles</a>
+    </div>
+    <div class="card-footer text-muted">
+        <p th:text="|Last updated: ${#strings.replace(latestArticle.updated, 'T', ' ')}|" class="card-text"><small class="text-muted"></small></p>
+    </div>
+</div>
+<div style="display:inline-block" class="card text-center">
+    <div class="card-header">
+        Our squad
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Manchester United squad for season 2021/2022</h5>
+        <img src="/images/maxresdefault.jpg"  width="250" height="200" alt="Squad image">
+        <a th:href="@{/team/squad}" class="btn btn-primary">Explore</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
+<div style="display:inline-block" class="card text-center">
+    <div class="card-header">
+        ManUtdFan.com Store
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Manchester United products on great prices</h5>
+        <img src="/images/E8lO0TQXEAMkfqx.jpg"  width="250" height="200" alt="Shop image">
+        <a th:href="@{/store}" class="btn btn-primary">Shop now</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
+<div style="display:inline-block" class="card text-center">
+    <div class="card-header">
+        Follow the season with ManUtdFan.com
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Manchester United matches and standings</h5>
+        <img src="/images/2020-09-20T142749Z_128544721_UP1EG9K146D6Q_RTRMADP_3_SOCCER-ENGLAND-CHE-LIV-REPORT.jfif"  width="250" height="200" alt="PL image">
+        <a th:href="@{/team/standings}" class="btn btn-primary">See Premier League 2021/2021 table</a>
+        <a th:href="@{/team/matches}" class="btn btn-primary">See all Manchester United games for season 2021/2022</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
+<div style="display:inline-block" class="card text-center">
+    <div class="card-header">
+        Learn about Old Trafford and book a visit today
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">"Theatre of Dreams" history and tours</h5>
+        <img src="/images/Manchester_United_Panorama_(8051523746).jpg"  width="250" height="200" alt="Stadium image">
+        <a th:href="@{/stadium}" class="btn btn-primary">Explore Old Trafford</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
 <footer th:replace="/fragments/common :: footer">
 </footer>
 <script th:replace="/fragments/common :: script"></script>

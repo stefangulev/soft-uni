@@ -7,7 +7,7 @@
 </header>
 
 <div th:each="aPlayer : ${players}"  class="card col-sm-6 bor" style="border: none; width: 18rem; display: inline-block">
-    <img class="card-img-top" th:src="${aPlayer.imgUrl}" alt="Card image cap">
+    <img class="card-img-top" width="288px" height="288px" th:src="${aPlayer.imgUrl ?: '/images/depositphotos_104564156-stock-illustration-male-user-icon.jpg'}" alt="Card image cap">
     <div class="card-body">
         <p class="card-text" th:text="|${aPlayer.firstName ?: ''} ${aPlayer.lastName}|"></p>
     </div>

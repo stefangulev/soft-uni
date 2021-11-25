@@ -4,6 +4,7 @@ import com.example.manchesterunitedfan.model.enums.NationalityEnum;
 import com.example.manchesterunitedfan.model.enums.PositionEnum;
 
 public class PlayerDetailsView {
+    private Long id;
     private String firstName;
     private String lastName;
     private Integer squadNumber;
@@ -12,6 +13,15 @@ public class PlayerDetailsView {
     private Integer age;
     private String description;
     private NationalityEnum nationality;
+
+    public Long getId() {
+        return id;
+    }
+
+    public PlayerDetailsView setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getFirstName() {
         return firstName;

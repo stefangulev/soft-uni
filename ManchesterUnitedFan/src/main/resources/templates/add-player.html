@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<div class="bg-light rounded">
+<form
+        th:object="${addPlayerBindingModel}"
+        th:action="@{/team/squad/add}"
+        th:method="post"
+>
+<div class="mb-3">
+  <label for="firstNameInput" class="form-label">First name</label>
+  <input  th:field="*{firstName}" class="form-control" type="text" id="firstNameInput" placeholder="Enter first name">
+</div>
+  <div class="mb-3">
+    <label for="lastNameInput" class="form-label">Last name</label>
+    <input  th:field="*{lastName}" th:errorclass="is-invalid" class="form-control" type="text" id="lastNameInput" placeholder="Enter last name">
+    <small id="lastNameError"
+           class="invalid-feedback form-text rounded">Last name cannot be blank!</small>
+  </div>
+  <div class="mb-3">
+    <label for="imgUrlInput" class="form-label">Image URL</label>
+    <input type="text" th:field="*{imgUrl}" class="form-control" id="imgUrlInput" placeholder="Enter IMG URL">
+  </div>
+  <div class="mb-3">
+    <label for="squadNumberInput" class="form-label">Squad number</label>
+    <input type="number" th:field="*{squadNumber}" th:errorclass="is-invalid" class="form-control" id="squadNumberInput" placeholder="Enter squad number">
+    <small id="squadNumberError"
+           class="invalid-feedback form-text rounded">Squad number must be a positive number!</small>
+    <small th:if="${squadNumberTaken}" id="squadNumberTakenError"
+           class="form-text rounded text-danger">Squad number already taken by another player!</small>
+  </div>
+  <div class="mb-3">
+    <label for="ageInput" class="form-label">Age</label>
+    <input type="number" th:field="*{age}" th:errorclass="is-invalid" class="form-control" id="ageInput" placeholder="Enter age">
+    <small id="ageInputError"
+           class="invalid-feedback form-text rounded">Age must be between 15 and 45!</small>
+  </div>
+  <div class="mb-3">
+  <div class="col">
+    <label for="nationality">Nationality</label>
+    <select id="nationality" th:field="*{nationality}"
+            th:errorclass="is-invalid">
+      <option value="" selected>Select position</option>
+      <option th:each="aNationality : ${T(com.example.manchesterunitedfan.model.enums.NationalityEnum).values()}"
+              th:value="${aNationality.name()}"
+              th:text="${aNationality.name()}"
+      ></option>
+    </select>
+    <small id="nationalityError" class="invalid-feedback form-text rounded">You must select nationality</small>
+  </div>
+  </div>
+  <div class="mb-3">
+    <div class="col">
+      <label for="position">Position</label>
+      <select id="position" th:field="*{position}"
+              th:errorclass="is-invalid">
+        <option value="" selected>Select position</option>
+        <option th:each="aPosition : ${T(com.example.manchesterunitedfan.model.enums.PositionEnum).values()}"
+                th:value="${aPosition.name()}"
+                th:text="${aPosition.name()}"
+        ></option>
+      </select>
+      <small id="positionError" class="invalid-feedback form-text rounded">You must select position!</small>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="descriptionInput" class="form-label">Player quote</label>
+    <textarea  th:field="*{description}" class="form-control" id="descriptionInput" placeholder="Enter quote from player"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-dark">Add player</button>
+</form>
+</div>
+
+<footer th:replace="/fragments/common :: footer"></footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

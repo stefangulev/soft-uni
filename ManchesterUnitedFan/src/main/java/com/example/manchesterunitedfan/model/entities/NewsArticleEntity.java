@@ -30,7 +30,8 @@ public class NewsArticleEntity extends BaseEntity{
         this.imgUrl = imgUrl;
         return this;
     }
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    @Lob
+    @Column(nullable = false)
     public String getText() {
         return text;
     }

@@ -32,7 +32,7 @@ public class NewsController {
 
     @GetMapping
     public String getNews(Model model) {
-        model.addAttribute("newsArticles", newsArticleService.getArticles());
+        model.addAttribute("newsArticles", newsArticleService.getArticlesOrderedByCreateDate());
         return "news";
     }
 

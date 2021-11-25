@@ -32,7 +32,7 @@ public class NewsArticleServiceImpl implements NewsArticleService {
     }
 
     @Override
-    public List<NewsArticleView> getArticles() {
+    public List<NewsArticleView> getArticlesOrderedByCreateDate() {
         return newsArticleRepository.findAllByOrderByCreatedDesc().stream().map(a -> modelMapper.map(a , NewsArticleView.class)).collect(Collectors.toList());
     }
 
@@ -57,6 +57,10 @@ public class NewsArticleServiceImpl implements NewsArticleService {
         newsArticleRepository.deleteById(id);
     }
 
+    @Override
+    public NewsArticleView findLatestArticle() {
+        return modelMapper.map(newsArticleRepository.findLatestStory(), NewsArticleView.class);
+    }
 
 
 }

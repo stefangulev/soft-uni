@@ -35,7 +35,7 @@ public class PlayerEntity extends BaseEntity{
         this.lastName = lastName;
         return this;
     }
-    @Column(nullable = false, name = "squad_number")
+    @Column(nullable = false, name = "squad_number", unique = true)
     public Integer getSquadNumber() {
         return squadNumber;
     }

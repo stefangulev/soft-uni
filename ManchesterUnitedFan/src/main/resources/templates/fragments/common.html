@@ -44,7 +44,13 @@
             <li class="nav-item col-md-4">
               <a class="nav-link text-white active h6" href="/team/squad">Squad</a>
             </li>
+              <th:block sec:authorize="hasRole('ADMIN')">
             <li><hr class="dropdown-divider"></li>
+              <li class="nav-item col-md-4">
+                  <a class="nav-link text-white active h6" href="/team/squad/add">Add player</a>
+              </li>
+              </th:block>
+              <li><hr class="dropdown-divider"></li>
             <li class="nav-item col-md-4">
               <a class="nav-link text-white active h6" href="/team/standings">Standings</a>
             </li>
