@@ -8,7 +8,9 @@ import com.example.pathfinder.model.view.ProfileViewModel;
 import com.example.pathfinder.repositories.RoleRepository;
 import com.example.pathfinder.repositories.UserRepository;
 import com.example.pathfinder.services.UserService;
+import com.example.pathfinder.web.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,11 @@ public class UserServiceImpl implements UserService {
     public ProfileViewModel showProfile(String email) {
         Optional<User> byId = userRepository.findByEmail(email);
         return modelMapper.map(byId.get(), ProfileViewModel.class);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByEmail(username).orElseThrow(() -> new ObjectNotFoundException("User with name " + username + " not found!"));
     }
 
 

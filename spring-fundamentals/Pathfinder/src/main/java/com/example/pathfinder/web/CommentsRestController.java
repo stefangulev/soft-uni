@@ -34,12 +34,13 @@ public class CommentsRestController {
 
     @PostMapping("/api/{routeId}/comments")
     public ResponseEntity<CommentView>
-    postComment(@AuthenticationPrincipal Principal principal,
+    postComment(Principal principal,
                 @PathVariable Long routeId,
                 @RequestBody @Valid NewCommentBindingModel newCommentBindingModel
                ) {
         CommentServiceModel serviceModel = modelMapper.map(newCommentBindingModel, CommentServiceModel.class);
         serviceModel.setRouteId(routeId);
+        serviceModel.setCreator(principal.getName());
         CommentView comment = commentService.createComment(serviceModel);
         URI location = URI.create(String.format("/api/%s/comments/%s", routeId, comment.getCommentId()));
         return ResponseEntity.created(location).body(comment);

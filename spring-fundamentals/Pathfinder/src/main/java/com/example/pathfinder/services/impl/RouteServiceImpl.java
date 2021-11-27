@@ -37,10 +37,15 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public RouteDetailsView getRouteById(Long id) {
+    public RouteDetailsView getRouteViewById(Long id) {
         Route route = routeRepository.findById(id).orElseThrow(() -> new RouteNotFound("Route with ID " + id + " not found!"));
         RouteDetailsView detailsView = modelMapper.map(route, RouteDetailsView.class);
         detailsView.setAuthorName(route.getAuthor().getUsername());
         return detailsView;
+    }
+
+    @Override
+    public Route getRouteEntityById(Long id) {
+        return routeRepository.findById(id).orElseThrow(() -> new RouteNotFound("Route with id " + id  + " not found!"));
     }
 }

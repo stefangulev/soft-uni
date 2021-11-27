@@ -1,6 +1,7 @@
 package com.example.pathfinder.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class Route extends BaseEntity{
     private String videoUrl;
     private Set<Picture> pictures;
     private Set<Category> categories;
-    private Set<Comment> comments;
+    private List<Comment> comments;
 
 
     @Lob
@@ -96,11 +97,11 @@ public class Route extends BaseEntity{
     }
 
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public Route setComments(Set<Comment> comments) {
+    public Route setComments(List<Comment> comments) {
         this.comments = comments;
         return this;
     }

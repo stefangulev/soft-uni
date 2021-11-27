@@ -24,7 +24,7 @@ public class RouteController {
 
     @GetMapping("/details/{id}")
     public String getDetails(@PathVariable Long id, Model model) {
-        model.addAttribute("route", routeService.getRouteById(id));
+        model.addAttribute("route", routeService.getRouteViewById(id));
         return "route-details";
     }
 
