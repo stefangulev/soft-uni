@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
-public class NewsArticleServiceImplUnitTests {
+public class NewsArticleServiceTests {
 
     @Mock
     private NewsArticleRepository mockNewsArticleRepository;
