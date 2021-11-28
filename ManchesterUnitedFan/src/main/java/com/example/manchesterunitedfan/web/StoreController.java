@@ -10,6 +10,7 @@ import com.example.manchesterunitedfan.service.ProductService;
 import com.example.manchesterunitedfan.service.UserService;
 import com.example.manchesterunitedfan.service.exceptions.ProductNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -150,6 +151,7 @@ public class StoreController {
     public ModelAndView handleProductException(ProductNotFoundException ex) {
         ModelAndView modelAndView = new ModelAndView("product-not-found");
         modelAndView.addObject("exMessage", ex.getMessage());
+        modelAndView.setStatus(HttpStatus.NOT_FOUND);
         return modelAndView;
     }
 }

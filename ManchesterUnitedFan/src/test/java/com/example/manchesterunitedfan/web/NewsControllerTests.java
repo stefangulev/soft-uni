@@ -88,6 +88,13 @@ public class NewsControllerTests {
     }
     @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
     @Test
+    void getDetailsNonExistent() throws Exception {
+        mockMvc.perform(get("/news/details/" +2))
+                .andExpect(status().isNotFound());
+
+    }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
     void getAddNewsPageAuthorized() throws Exception {
         mockMvc.
                 perform(get("/news/add"))

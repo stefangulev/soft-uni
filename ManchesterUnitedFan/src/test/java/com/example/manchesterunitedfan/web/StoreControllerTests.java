@@ -100,6 +100,14 @@ public class StoreControllerTests {
         mockMvc.perform(get("/store/details/" + productEntity.getId()))
                 .andExpect(status().is3xxRedirection());
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void getProductDetailsNonExistent() throws Exception {
+        mockMvc.perform(get("/store/details/" +2))
+                .andExpect(status().isNotFound());
+
+    }
+
     @WithMockUser(value = "stefan", roles = {"USER"})
     @Test
     @Transactional
