@@ -137,6 +137,25 @@ class TeamControllerTest {
         Assertions.assertEquals(playerEntityBySquadNumber.get().getNationality(), NATIONALITY);
 
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void postAddPlayerInvalidInput() throws Exception {
+        mockMvc.
+                perform(post("/team/squad/add")
+                        .param("firstName", FIRST_NAME)
+                        .param("lastName", LAST_NAME)
+                        .param("squadNumber", String.valueOf(SQUAD_NUMBER))
+                        .param("position", String.valueOf(POSITION))
+                        .param("age", String.valueOf(-1))
+                        .param("nationality", String.valueOf(NATIONALITY))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(status().is3xxRedirection());
+
+
+        Assertions.assertEquals(playerRepository.count(), 0);
+
+    }
     @WithMockUser(value = "stefan")
     @Test
     void postAddPlayerUnauthorized() throws Exception {
@@ -247,6 +266,34 @@ class TeamControllerTest {
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isForbidden());
+
+    }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void postEditPlayerInvalidInput() throws Exception {
+        PlayerEntity playerEntity = initPlayer();
+        mockMvc.
+                perform(post("/team/squad/edit/" + playerEntity.getId())
+                        .param("firstName", UPDATED_FIRST_NAME)
+                        .param("lastName", UPDATED_LAST_NAME)
+                        .param("squadNumber", String.valueOf(UPDATED_SQUAD_NUMBER))
+                        .param("position", String.valueOf(UPDATED_POSITION))
+                        .param("age", String.valueOf(-1))
+                        .param("nationality", String.valueOf(UPDATED_NATIONALITY))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(status().is3xxRedirection());
+
+
+        Optional<PlayerEntity> playerEntityBySquadNumber =
+                playerRepository.findById(playerEntity.getId());
+        Assertions.assertTrue(playerEntityBySquadNumber.isPresent());
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getFirstName(), FIRST_NAME);
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getLastName(), LAST_NAME);
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getSquadNumber(), SQUAD_NUMBER);
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getAge(), AGE);
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getPosition(), POSITION);
+        Assertions.assertEquals(playerEntityBySquadNumber.get().getNationality(), NATIONALITY);
 
     }
     @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
