@@ -6,15 +6,15 @@
 <header th:replace="/fragments/common :: navbar">
 </header>
 
-<h1>Welcome to ManUtdFan.com</h1>
+
 <div style="display: grid; rid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'one two'
 'three four';">
-<div style="display:inline-block" class="card text-center">
+<div th:unless="${latestArticle == null}" style="display:inline-block" class="card text-center">
 
     <div class="card-header">
-        Latest story
+        News and updates
     </div>
     <div th:object="${latestArticle}" class="card-body" style="display: grid;
     grid-template-areas: 'one'
@@ -22,12 +22,28 @@
 'three three';">
         <h5 class="card-title" th:text="*{title}"></h5>
         <div>
-        <img th:src="${latestArticle.imgUrl ?: '/img/logo.png'}"  width="250" height="200" alt="Article image">
+        <img th:src="${latestArticle.imgUrl ?: '/images/logo.png'}"  width="250" height="200" alt="Article image">
         </div>
-        <a th:href="@{/news/details/{id}(id=*{id})}" class="btn btn-primary">Read more</a>
+        <a th:href="@{/news/details/{id}(id=*{id})}" class="btn btn-primary">Read more about latest article</a>
         <a th:href="@{/news}" class="btn btn-primary">Check all articles</a>
     </div>
 </div>
+    <div th:if="${latestArticle == null}" style="display:inline-block" class="card text-center">
+
+        <div class="card-header">
+            Manchester United news
+        </div>
+        <div class="card-body" style="display: grid;
+    grid-template-areas: 'one'
+    'two'
+'three three';">
+            <h5 class="card-title">Manchester United news and updates</h5>
+            <div>
+                <img src="/images/logo.png"  width="250" height="200" alt="Article image">
+            </div>
+            <a th:href="@{/news}" class="btn btn-primary">Check all articles</a>
+        </div>
+    </div>
 <div class="card text-center" style="display: inline-block">
     <div class="card-header">
         Our squad

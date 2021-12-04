@@ -1,5 +1,6 @@
 package com.example.manchesterunitedfan.web;
 
+import com.example.manchesterunitedfan.model.view.NewsArticleView;
 import com.example.manchesterunitedfan.service.NewsArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String getHome(Model model) {
-        model.addAttribute("latestArticle",newsArticleService.findLatestArticle());
+        model.addAttribute("latestArticle", newsArticleService.findLatestArticle());
         return "index";
     }
 }

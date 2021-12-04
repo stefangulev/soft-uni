@@ -7,7 +7,7 @@
 <header th:replace="/fragments/common :: navbar">
 </header>
 <h5 th:text="*{title}"></h5>
-<img th:src="${article.imgUrl ?: '/img/logo.png' }" width="600" height="450" alt="Card image cap">
+<img th:src="${article.imgUrl ?: '/images/logo.png' }" width="600" height="450" alt="Card image cap">
 <div class="bg-light" style="display: inline-block" >
     <p th:text="|Created: ${#strings.replace(article.created, 'T', ' ')}|"></p>
     <p th:text="|Last modified: ${#strings.replace(article.updated, 'T', ' ')}|"></p>

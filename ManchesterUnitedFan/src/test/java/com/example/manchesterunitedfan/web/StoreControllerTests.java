@@ -104,7 +104,7 @@ public class StoreControllerTests {
     @Test
     void getProductDetailsNonExistent() throws Exception {
         mockMvc.perform(get("/store/details/" +2))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound()).andExpect(view().name("product-not-found"));
 
     }
 
@@ -150,6 +150,19 @@ public class StoreControllerTests {
         Assertions.assertEquals(preBuyQuantityOfProduct, productEntity.getQuantity());
         Assertions.assertEquals(preBuyOwnedItemsCount, userEntity.getOwnedItems().size());
         Assertions.assertEquals(userEntity.getAccountBalance(), preBuyUserBalance);
+    }
+    @WithMockUser(value = "stefan", roles = {"USER"})
+    @Test
+    @Transactional
+    void buyProductInvalidId() throws Exception {
+        ProductEntity productEntity = initOutOfStockProduct();
+        UserRoleEntity userRoleEntity = initUserRole();
+       initUserEntity(userRoleEntity);
+        mockMvc
+                .perform(post("/store/buy/" + (productEntity.getId() + 100)).with(csrf()))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("product-not-found"));
+
     }
 
     @WithMockUser(value = "stefan", roles = {"USER"})
@@ -267,6 +280,16 @@ public class StoreControllerTests {
                 .andExpect(view().name("edit-product"))
                 .andExpect(model().attributeExists("product"));
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void getEditProductPageInvalidId() throws Exception {
+        initUserEntity(initAdminRole());
+        ProductEntity productEntity = initProduct();
+        mockMvc.
+                perform(get("/store/edit-product/" + (productEntity.getId() + 100)))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("product-not-found"));
+    }
     @WithMockUser(value = "stefan")
     @Test
     void getEditProductPageUnauthorized() throws Exception {
@@ -303,6 +326,20 @@ public class StoreControllerTests {
         Assertions.assertEquals(product.get().getQuantity(),UPDATED_PRODUCT_QUANTITY);
 
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void postEditProductInvalidId() throws Exception {
+        initUserEntity(initAdminRole());
+        ProductEntity productEntity = initProduct();
+        mockMvc.perform(patch("/store/edit-product/" + (productEntity.getId() + 100))
+                .param("name", UPDATED_PRODUCT_NAME)
+                .param("quantity", String.valueOf(UPDATED_PRODUCT_QUANTITY))
+                .param("price", String.valueOf(UPDATED_PRODUCT_PRICE))
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(status().isNotFound()).andExpect(view().name("product-not-found"));
+
+    }
     @WithMockUser(value = "stefan")
     @Test
     void postEditProductUnauthorized() throws Exception {
@@ -330,6 +367,14 @@ public class StoreControllerTests {
         Assertions.assertTrue(disabledProduct.isPresent());
         Assertions.assertTrue(disabledProduct.get().isDisabled());
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void disableProductInvalidId() throws Exception {
+        initUserEntity(initAdminRole());
+        ProductEntity productEntity = initProduct();
+        mockMvc.perform(delete("/store/disable/" + (productEntity.getId() + 100))
+                .with(csrf())).andExpect(status().isNotFound()).andExpect(view().name("product-not-found"));
+    }
     @WithMockUser(value = "stefan")
     @Test
     void disableProductUnauthorized() throws Exception {
@@ -350,6 +395,15 @@ public class StoreControllerTests {
         Optional<ProductEntity> enabledProduct = productRepository.findById(productEntity.getId());
         Assertions.assertTrue(enabledProduct.isPresent());
         Assertions.assertFalse(enabledProduct.get().isDisabled());
+    }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void enableProductInvalidId() throws Exception {
+        initUserEntity(initAdminRole());
+        ProductEntity productEntity = initProduct().setDisabled(true);
+        mockMvc.perform(patch("/store/enable/" + (productEntity.getId() + 100))
+                .with(csrf())).andExpect(status().isNotFound()).andExpect(view().name("product-not-found"));
+
     }
     @WithMockUser(value = "stefan")
     @Test

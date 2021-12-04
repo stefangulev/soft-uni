@@ -243,6 +243,16 @@ public class NewsControllerTests {
         NewsArticleEntity latestStory = newsArticleRepository.findLatestStory();
         Assertions.assertNull(latestStory);
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void deleteArticleInvalidId() throws Exception {
+        UserRoleEntity adminRole = initAdminRole();
+        initUserEntity(adminRole);
+        NewsArticleEntity newsArticleEntity = initArticle();
+        mockMvc.perform(delete("/news/delete/" + (newsArticleEntity.getId() + 100)).with(csrf()))
+                .andExpect(status().isNotFound()).andExpect(view().name("news-article-not-found"));
+        Assertions.assertEquals(newsArticleRepository.count(), 1);
+    }
     @WithMockUser(value = "stefan", roles = {"USER"})
     @Test
     void deleteArticleUnauthorized() throws Exception {

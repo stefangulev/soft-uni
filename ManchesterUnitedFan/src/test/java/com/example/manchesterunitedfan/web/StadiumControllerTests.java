@@ -122,7 +122,7 @@ public class StadiumControllerTests {
 
     @WithMockUser(value = "stefan")
     @Test
-    void deleteArticleAuthorized() throws Exception {
+    void deleteVisitAuthorized() throws Exception {
         UserEntity userEntity = initUserEntity();
         StadiumVisitEntity stadiumVisitEntity = initStadiumVisit(userEntity);
         mockMvc.perform(delete("/stadium/delete/" + stadiumVisitEntity.getId()).with(csrf()))
@@ -131,12 +131,21 @@ public class StadiumControllerTests {
         Optional<StadiumVisitEntity> visit = stadiumVisitRepository.findById(stadiumVisitEntity.getId());
         Assertions.assertFalse(visit.isPresent());
     }
-    @WithMockUser(value = "petkan")
+    @WithMockUser(value = "stefan")
     @Test
-    void deleteArticleUnauthorized() throws Exception {
+    void deleteVisitInvalidId() throws Exception {
         UserEntity userEntity = initUserEntity();
         StadiumVisitEntity stadiumVisitEntity = initStadiumVisit(userEntity);
-        mockMvc.perform(delete("/news/delete/" + stadiumVisitEntity.getId()).with(csrf()))
+        mockMvc.perform(delete("/stadium/delete/" + (stadiumVisitEntity.getId() + 100)).with(csrf()))
+                .andExpect(status().isNotFound()).andExpect(view().name("visit-not-found"));
+        Assertions.assertEquals(stadiumVisitRepository.count(), 1);
+    }
+    @WithMockUser(value = "petkan")
+    @Test
+    void deleteVisitUnauthorized() throws Exception {
+        UserEntity userEntity = initUserEntity();
+        StadiumVisitEntity stadiumVisitEntity = initStadiumVisit(userEntity);
+        mockMvc.perform(delete("/stadium/delete/" + stadiumVisitEntity.getId()).with(csrf()))
                 .andExpect(status().isForbidden());
     }
 

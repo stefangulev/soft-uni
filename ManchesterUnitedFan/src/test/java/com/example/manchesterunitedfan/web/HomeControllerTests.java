@@ -2,6 +2,7 @@ package com.example.manchesterunitedfan.web;
 
 import com.example.manchesterunitedfan.model.entities.NewsArticleEntity;
 import com.example.manchesterunitedfan.repository.NewsArticleRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,9 +28,21 @@ public class HomeControllerTests {
     @Autowired
     private NewsArticleRepository newsArticleRepository;
 
+    @BeforeEach
+    void removeAll() {
+        newsArticleRepository.deleteAll();
+    }
+
     @Test
-    void getHome() throws Exception {
+    void getHomeWithArticle() throws Exception {
         initArticle();
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("index"));
+    }
+
+    @Test
+    void getHomeWithoutArticle() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));

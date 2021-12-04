@@ -327,6 +327,15 @@ class TeamControllerTest {
                 .andExpect(status().is3xxRedirection());
         Assertions.assertEquals(playerRepository.count(), 0);
     }
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void deleteInvalidId() throws Exception {
+
+        PlayerEntity playerEntity = initPlayer();
+            mockMvc.perform(delete("/team/squad/delete/" + (playerEntity.getId() + 100)).with(csrf()))
+                .andExpect(status().isNotFound()).andExpect(view().name("player-not-found"));
+        Assertions.assertEquals(playerRepository.count(), 1);
+    }
     @WithMockUser(value = "stefan", roles = {"USER"})
     @Test
     void deleteArticleUnauthorized() throws Exception {

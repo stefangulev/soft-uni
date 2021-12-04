@@ -6,6 +6,7 @@ import com.example.manchesterunitedfan.model.view.StadiumVisitView;
 import com.example.manchesterunitedfan.repository.StadiumVisitRepository;
 import com.example.manchesterunitedfan.service.StadiumVisitService;
 import com.example.manchesterunitedfan.service.UserService;
+import com.example.manchesterunitedfan.service.exceptions.VisitNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,7 @@ public class StadiumVisitServiceImpl implements StadiumVisitService {
     public boolean isOwner(String username, Long id) {
         Optional<StadiumVisitEntity> byId = stadiumVisitRepository.findById(id);
         if (byId.isEmpty()) {
-            return false;
+            throw new VisitNotFoundException("Visit with ID " + id + " was not found!" );
         }
         return byId.get().getUser().getUsername().equals(username);
     }

@@ -58,8 +58,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(UpdateProductServiceModel serviceModel) {
-        ProductEntity productEntity = productRepository.findById(serviceModel.getId())
-                .orElseThrow(() -> new ProductNotFoundException("Product with id " + serviceModel.getId() + " not found!"));
+        ProductEntity productEntity = getProductEntityById(serviceModel.getId());
         productEntity.setName(serviceModel.getName()).setQuantity(serviceModel.getQuantity()).setPrice(serviceModel.getPrice())
                 .setImgUrl(serviceModel.getImgUrl());
         productRepository.save(productEntity);
@@ -67,16 +66,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void disableProduct(Long id) {
-        ProductEntity productEntity = productRepository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"))
+        ProductEntity productEntity = getProductEntityById(id)
         .setDisabled(true);
         productRepository.save(productEntity);
     }
 
     @Override
     public void enableProduct(Long id) {
-        ProductEntity productEntity = productRepository.findById(id).
-                orElseThrow(() -> new ProductNotFoundException("Product with id " + id + " not found!"))
+        ProductEntity productEntity = getProductEntityById(id)
                 .setDisabled(false);
         productRepository.save(productEntity);
     }

@@ -54,12 +54,20 @@ public class NewsArticleServiceImpl implements NewsArticleService {
 
     @Override
     public void deleteArticle(Long id) {
+        findArticleById(id);
         newsArticleRepository.deleteById(id);
     }
 
     @Override
     public NewsArticleView findLatestArticle() {
-        return modelMapper.map(newsArticleRepository.findLatestStory(), NewsArticleView.class);
+
+        NewsArticleEntity latestStory = newsArticleRepository.findLatestStory();
+        if (latestStory == null) {
+            return null;
+        } else {
+            return modelMapper.map(latestStory, NewsArticleView.class);
+        }
+
     }
 
 
