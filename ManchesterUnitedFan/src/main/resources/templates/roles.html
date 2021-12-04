@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<h3 th:if="${changeCompleted}">Roles updated!</h3>
+<div th:each="aUser : ${usersWithRoles}">
+    <form th:action="@{/admin/roles/{id}(id=${aUser.id})}" th:method="patch">
+    <div class="col">
+        <p th:text="|Username - ${aUser.username}|"></p>
+        <label for="role">Role</label>
+        <select id="role" th:field="${changeRoleBindingModel.roleSelect}">
+            <option value=" " selected>Select new role</option>
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="ADMIN & USER">ADMIN & USER</option>
+        </select>
+        <button class="btn-dark" type="submit">Submit</button>
+    </div>
+
+</form>
+</div>
+<small th:if="${invalidOption}" id="roleError" class="text-danger form-text rounded">You must select role!</small>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

@@ -95,9 +95,21 @@
         <li class="nav-item col-md-4">
           <a class="nav-link text-white active h6" href="/stadium">Stadium</a>
         </li>
-            <li class="nav-item col-md-4" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link text-white active h6" href="/stats">Stats</a>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown col-md-4">
+                <a class="nav-link text-white active h6 dropdown-toggle" id="ModifyRoles" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin
+                </a>
+                <ul class="dropdown-menu bg-ul" aria-labelledby="navbarDropdown">
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h6" href="/admin/roles">Modify roles</a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h6" href="/admin/stats">Stats</a>
+                    </li>
+                </ul>
             </li>
+
         <li class="nav-item col-md-4">
           <form th:action="@{/users/logout}" th:method="post">
           <button type="submit" class="btn btn-link text-white nav-link ">Logout</button>

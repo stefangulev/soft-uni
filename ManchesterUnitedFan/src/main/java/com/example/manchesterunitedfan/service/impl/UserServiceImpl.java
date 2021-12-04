@@ -8,6 +8,7 @@ import com.example.manchesterunitedfan.model.service.ChangePasswordServiceModel;
 import com.example.manchesterunitedfan.model.service.DepositFundsServiceModel;
 import com.example.manchesterunitedfan.model.service.UpdateProfileServiceModel;
 import com.example.manchesterunitedfan.model.service.UserRegisterServiceModel;
+import com.example.manchesterunitedfan.model.view.UserAdminPageView;
 import com.example.manchesterunitedfan.model.view.UserProfileView;
 import com.example.manchesterunitedfan.repository.UserRepository;
 import com.example.manchesterunitedfan.repository.UserRoleRepository;
@@ -22,7 +23,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -46,6 +49,13 @@ public class UserServiceImpl implements UserService {
     public UserEntity findUserEntityByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException("User with name " + username + " was not found!"));
+
+    }
+    @Override
+    public UserEntity findUserEntityById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " was not found!"));
+
     }
 
     @Override
@@ -119,5 +129,15 @@ public class UserServiceImpl implements UserService {
         UserEntity user = findUserEntityByUsername(name);
         user.setImgUrl(serviceModel.getImgUrl());
         userRepository.save(user);
+    }
+
+    @Override
+    public List<UserAdminPageView> getAllUsersWithRoles() {
+        return userRepository.findAll().stream().map(u -> modelMapper.map(u, UserAdminPageView.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void saveEntityFromOtherService(UserEntity userEntity) {
+        userRepository.save(userEntity);
     }
 }
