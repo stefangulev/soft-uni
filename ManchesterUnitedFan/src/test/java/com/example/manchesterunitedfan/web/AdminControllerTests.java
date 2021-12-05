@@ -40,24 +40,43 @@ public class AdminControllerTests {
         userRepository.deleteAll();
         userRoleRepository.deleteAll();
     }
-
     @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
     @Test
-    void getStatsAuthorized() throws Exception {
-        mockMvc.perform(get("/admin/stats"))
+    void getUsageStatsAuthorized() throws Exception {
+        mockMvc.perform(get("/admin/usage-stats"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("stats"));
+                .andExpect(view().name("usage-stats"));
     }
     @WithMockUser(value = "stefan", roles = {"USER"})
     @Test
-    void getStatsUnauthorized() throws Exception {
-        mockMvc.perform(get("/admin/stats"))
+    void getUsageStatsUnauthorized() throws Exception {
+        mockMvc.perform(get("/admin/usage-stats"))
                 .andExpect(status().isForbidden());
     }
     @Test
-    void getStatsAnonymous() throws Exception {
+    void getUsageStatsAnonymous() throws Exception {
         mockMvc.
-                perform(get("/admin/stats"))
+                perform(get("/admin/usage-stats"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
+    @Test
+    void getSecurityStatsAuthorized() throws Exception {
+        mockMvc.perform(get("/admin/security-stats"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("security-stats"));
+    }
+    @WithMockUser(value = "stefan", roles = {"USER"})
+    @Test
+    void getSecurityStatsUnauthorized() throws Exception {
+        mockMvc.perform(get("/admin/security-stats"))
+                .andExpect(status().isForbidden());
+    }
+    @Test
+    void getSecurityStatsAnonymous() throws Exception {
+        mockMvc.
+                perform(get("/admin/security-stats"))
                 .andExpect(status().is3xxRedirection());
     }
     @WithMockUser(value = "stefan", roles = {"ADMIN", "USER"})
