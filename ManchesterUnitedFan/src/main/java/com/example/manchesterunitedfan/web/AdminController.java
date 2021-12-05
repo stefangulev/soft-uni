@@ -4,6 +4,7 @@ import com.example.manchesterunitedfan.model.binding.ChangeRoleBindingModel;
 import com.example.manchesterunitedfan.model.service.ChangeRoleServiceModel;
 import com.example.manchesterunitedfan.service.RoleService;
 import com.example.manchesterunitedfan.service.UserService;
+import com.example.manchesterunitedfan.service.exceptions.InvalidRoleChoiceException;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -31,9 +32,13 @@ public class AdminController {
     }
 
 
-    @GetMapping("/stats")
+    @GetMapping("/security-stats")
     public String getStats() {
-        return "stats";
+        return "security-stats";
+    }
+    @GetMapping("/usage-stats")
+    public String getUsageStats() {
+        return "usage-stats";
     }
 
     @GetMapping("/roles")
@@ -42,7 +47,7 @@ public class AdminController {
             model.addAttribute("invalidOption", false);
         }
         if(!model.containsAttribute("changeCompleted")) {
-            model.addAttribute("invalidOption", false);
+            model.addAttribute("changeCompleted", false);
         }
         model.addAttribute("usersWithRoles", userService.getAllUsersWithRoles());
         return "roles";
@@ -68,6 +73,14 @@ public class AdminController {
     @ModelAttribute
     public ChangeRoleBindingModel getChangeRoleBindingModel() {
         return new ChangeRoleBindingModel();
+    }
+
+    @ExceptionHandler({InvalidRoleChoiceException.class})
+    public ModelAndView handleInvalidRoleChoiceException(InvalidRoleChoiceException ex) {
+        ModelAndView modelAndView = new ModelAndView("role-choice-not-found");
+        modelAndView.addObject("exMessage", ex.getMessage());
+        modelAndView.setStatus(HttpStatus.NOT_FOUND);
+        return modelAndView;
     }
 
 }

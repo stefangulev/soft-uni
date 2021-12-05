@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<div>
+  <div>Security stats for ManUtdFan.com</div>
+  <p th:text="|Anonymous requests: ${@securityStatsServiceImpl.anonymousRequests}|"></p>
+  <p th:text="|Authenticared requests: ${@securityStatsServiceImpl.authenticatedRequests}|"></p>
+  <p th:text="|Total requests: ${@securityStatsServiceImpl.authenticatedRequests + @securityStatsServiceImpl.anonymousRequests}|"></p>
+</div>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>

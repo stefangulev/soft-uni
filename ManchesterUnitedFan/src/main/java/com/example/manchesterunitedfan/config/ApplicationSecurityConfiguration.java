@@ -28,7 +28,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/users/login", "/users/register").anonymous()
-                .antMatchers("/news/add", "/news/edit/{id}", "/admin/stats", "/admin/roles" ,"/team/squad/add", "/team/squad/edit/{id}", "/team/squad/delete/{id}").access("hasRole('ADMIN')")
+                .antMatchers("/news/add", "/news/edit/{id}", "/admin/security-stats", "/admin/usage-stats", "/admin/roles" ,"/team/squad/add", "/team/squad/edit/{id}", "/team/squad/delete/{id}").access("hasRole('ADMIN')")
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()

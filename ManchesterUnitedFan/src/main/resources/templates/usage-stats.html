@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/common :: head">
+</head>
+<body>
+<header th:replace="/fragments/common :: navbar">
+</header>
+<div>
+  <div>Usage stats for ManUtdFan.com</div>
+  <p th:text="|Squad requests: ${@usageStatsServiceImpl.squadRequests}|"></p>
+  <p th:text="|Standings requests: ${@usageStatsServiceImpl.standingsRequests}|"></p>
+  <p th:text="|Matches requests: ${@usageStatsServiceImpl.matchesRequests}|"></p>
+  <p th:text="|News requests: ${@usageStatsServiceImpl.newsRequests}|"></p>
+  <p th:text="|Store requests: ${@usageStatsServiceImpl.storeRequests}|"></p>
+  <p th:text="|Stadium requests: ${@usageStatsServiceImpl.stadiumRequests}|"></p>
+</div>
+<footer th:replace="/fragments/common :: footer">
+</footer>
+<script th:replace="/fragments/common :: script"></script>
+</body>
+</html>
