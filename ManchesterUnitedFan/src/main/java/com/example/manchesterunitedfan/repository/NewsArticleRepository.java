@@ -13,6 +13,6 @@ import java.util.Set;
 @Repository
 public interface NewsArticleRepository extends JpaRepository<NewsArticleEntity, Long> {
     List<NewsArticleEntity> findAllByOrderByCreatedDesc();
-    @Query(value = "SELECT * FROM news_articles a ORDER BY created DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM news_articles a ORDER BY id DESC LIMIT 1", nativeQuery = true)
     NewsArticleEntity findLatestStory();
 }

@@ -11,7 +11,7 @@
   <p th:text="|Authenticared requests: ${@securityStatsServiceImpl.authenticatedRequests}|"></p>
   <p th:text="|Total requests: ${@securityStatsServiceImpl.authenticatedRequests + @securityStatsServiceImpl.anonymousRequests}|"></p>
 </div>
-<footer th:replace="/fragments/common :: footer">
+<footer th:replace="/fragments/common :: footerNoScroll">
 </footer>
 <script th:replace="/fragments/common :: script"></script>
 </body>
