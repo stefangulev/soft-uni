@@ -5,7 +5,7 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
-<div class="bg-light rounded">
+<div class="bg-light rounded form-control">
   <small th:if="${invalid_credentials}" id="invalidCredentials"
          class="form-text rounded text-danger">Invalid credentials!</small>
 <form th:action="@{/users/login}" th:method="post">

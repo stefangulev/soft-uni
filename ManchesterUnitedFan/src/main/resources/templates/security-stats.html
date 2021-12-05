@@ -5,12 +5,16 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
-<div>
-  <div>Security stats for ManUtdFan.com</div>
-  <p th:text="|Anonymous requests: ${@securityStatsServiceImpl.anonymousRequests}|"></p>
-  <p th:text="|Authenticared requests: ${@securityStatsServiceImpl.authenticatedRequests}|"></p>
-  <p th:text="|Total requests: ${@securityStatsServiceImpl.authenticatedRequests + @securityStatsServiceImpl.anonymousRequests}|"></p>
+<div style="margin-left: 300px; margin-top: 20px; margin-bottom: 20px">
+  <img src="/images/3432DFC800000578-3591435-A_steward_evacuates_fans_from_the_ground_prior_to_the_Barclays_P-a-56_1463323680798.jpg" width="500px" height="500px" alt="Player image">
+  <div style="display: inline-block; width: 500px; height: 500px;" >
+    <h2>Security stats:</h2>
+    <h5 th:text="|Anonymous requests: ${@securityStatsServiceImpl.anonymousRequests}|"></h5>
+    <h5 th:text="|Authenticared requests: ${@securityStatsServiceImpl.authenticatedRequests}|"></h5>
+      <h5 th:text="|Total requests: ${@securityStatsServiceImpl.authenticatedRequests + @securityStatsServiceImpl.anonymousRequests}|"></h5>
+  </div>
 </div>
+
 <footer th:replace="/fragments/common :: footerNoScroll">
 </footer>
 <script th:replace="/fragments/common :: script"></script>

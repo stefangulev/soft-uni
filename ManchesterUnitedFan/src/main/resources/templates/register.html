@@ -9,7 +9,7 @@
        class="form-text rounded text-danger">Passwords not matching!</small>
 <small th:if="${userExists}" id="userExistsError"
        class="form-text rounded text-danger">User with email or username already exists!</small>
-<div class="bg-light rounded">
+<div class="bg-light rounded form-control">
 <form th:object="${userRegisterBindingModel}" th:action="@{/users/register}" th:method="post">
 <div class="mb-3">
   <label for="usernameInput" class="form-label">Username</label>
@@ -50,7 +50,7 @@
 </form>
 </div>
 
-<footer th:replace="/fragments/common :: footerNoScroll"></footer>
+<footer th:replace="/fragments/common :: footerScroll"></footer>
 <script th:replace="/fragments/common :: script"></script>
 </body>
 </html>

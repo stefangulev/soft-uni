@@ -6,6 +6,7 @@
 <header th:replace="/fragments/common :: navbar">
 </header>
 <h3 th:if="${changeCompleted}">Roles updated!</h3>
+<div class="form-control">
 <div th:each="aUser : ${usersWithRoles}">
     <form th:action="@{/admin/roles/{id}(id=${aUser.id})}" th:method="patch">
     <div class="col">
@@ -19,7 +20,7 @@
         </select>
         <button class="btn-dark" type="submit">Submit</button>
     </div>
-
+</div>
 </form>
 </div>
 <small th:if="${invalidOption}" id="roleError" class="text-danger form-text rounded">You must select role!</small>

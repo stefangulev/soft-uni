@@ -5,7 +5,7 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
-<div th:each="anArticle : ${newsArticles}" class="card mb-3" style="max-width: 890px;">
+<div th:each="anArticle : ${newsArticles}" class="card mb-3" style="max-width: 890px; margin-left: 300px">
     <div class="row g-0">
         <div class="col-md-4">
             <img th:src="${anArticle.imgUrl ?: '/images/logo.png'}"  width="250" height="200" alt="Article image">

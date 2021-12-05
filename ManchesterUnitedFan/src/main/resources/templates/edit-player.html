@@ -5,7 +5,7 @@
 <body>
 <header th:replace="/fragments/common :: navbar">
 </header>
-<div class="bg-light rounded">
+<div class="bg-light rounded form-control">
 <form
         th:object="${player}"
         th:action="@{/team/squad/edit/{id}(id=*{id})}"

@@ -5,8 +5,9 @@
 <body th:object="${player}">
 <header th:replace="/fragments/common :: navbar">
 </header>
+<div style="margin-left: 300px">
 <img th:src="${player.imgUrl ?: '/images/depositphotos_104564156-stock-illustration-male-user-icon.jpg'}" width="500px" height="500px" alt="Player image">
-<div class="bg-light" style="display: inline-block" >
+<div class="bg-light form-control" style="display: inline-block; width: 500px; height: 500px;" >
     <p th:text="|Player name: ${player.firstName ?: ''} ${player.lastName}|"></p>
     <p th:text="|Position: ${player.position.name()}|"></p>
     <p th:text="|Nationality: ${player.nationality.name()}|"></p>
@@ -21,6 +22,7 @@
         <button class="btn btn-dark" type="submit">Delete</button>
     </form>
     </th:block>
+</div>
 </div>
 <footer th:replace="/fragments/common :: footerNoScroll">
 </footer>

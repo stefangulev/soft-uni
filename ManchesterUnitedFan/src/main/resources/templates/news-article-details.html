@@ -6,14 +6,17 @@
 <body th:object="${article}">
 <header th:replace="/fragments/common :: navbar">
 </header>
+<div style="margin-left: 400px">
 <h5 th:text="*{title}"></h5>
 <img th:src="${article.imgUrl ?: '/images/logo.png' }" width="600" height="450" alt="Card image cap">
+</div>
 <div class="bg-light" style="display: inline-block" >
     <p th:text="|Created: ${#strings.replace(article.created, 'T', ' ')}|"></p>
     <p th:text="|Last modified: ${#strings.replace(article.updated, 'T', ' ')}|"></p>
     <p th:text="*{text}"></p>
 </div>
 <th:block sec:authorize="hasRole('ADMIN')">
+
 <form th:method="get" style="display: inline-block" th:action="@{/news/edit/{id}(id=*{id})}">
     <button class="btn btn-dark" type="submit">Edit</button>
 </form>

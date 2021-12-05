@@ -14,17 +14,17 @@ fetch("https://api.football-data.org/v2/teams/66/matches" ,{
 
 
             let card =
-                '<div className="card bg-dark text-white" style="width: 18rem; margin: 50px 600px;">' +
+                '<div class="card bg-light" style="width: 18rem; margin: 50px 600px;">' +
                 '<img src="' + infoElement.competition.area.ensignUrl + '" style="display: inline-block" width="30px" height="30px">' +
-                '<h6 className="card-text" style="display: inline-block" width="50px" height="50px">' + infoElement.competition.name + '</h6>' +
+                '<h6 class="card-text" style="display: inline-block" width="50px" height="50px">' + infoElement.competition.name + '</h6>' +
                 '<div>' +
-                '<h5 className="card-title">' + infoElement.homeTeam.name + ' - ' + infoElement.awayTeam.name +'</h5>' +
+                '<h5 class="card-title">' + infoElement.homeTeam.name + ' - ' + infoElement.awayTeam.name +'</h5>' +
                 '<img ' + 'src="https://crests.football-data.org/' + infoElement.homeTeam.id + '.svg" ' + 'style="display: inline-block" width="100px" height="100px" alt="Team badge inavailable">' +
                 '<h2 style="display: inline-block">' + homeTeamScore + '</h2>' +
                 '<h2 style="display: inline-block">' + ' : ' + '</h2>' +
                 '<h2 style="display: inline-block">' + awayTeamScore + '</h2>' +
                 '<img ' + 'src="https://crests.football-data.org/' + infoElement.awayTeam.id + '.svg" ' + 'style="display: inline-block" width="100px" height="100px" alt="Team badge inavailable">' +
-                '<h6 className="card-text">Date (UTC):' + matchDate + '</h6>' +
+                '<h6 class="card-text">Date (UTC):' + matchDate + '</h6>' +
                 '   </div>' +
                 '</div> ';
             $("#matches").append(card);
