@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserService {
     UserEntity findUserEntityByUsername(String username);
     UserEntity findUserEntityById(Long id);
-    UserEntity findUserEntityByUsernameOrEmail(String username, String email);
+    List<UserEntity> findUserEntityByUsernameOrEmail(String username, String email);
     void register(UserRegisterServiceModel userRegisterServiceModel);
     UserProfileView findProfileViewByUsername(String username);
     void changePassword(ChangePasswordServiceModel changePasswordServiceModel, String name);

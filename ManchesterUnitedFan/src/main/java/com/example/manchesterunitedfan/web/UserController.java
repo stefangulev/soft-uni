@@ -61,7 +61,7 @@ public class UserController {
             return "redirect:register";
         }
         if (userService.findUserEntityByUsernameOrEmail(userRegisterBindingModel.getUsername(),
-                userRegisterBindingModel.getEmail()) != null) {
+                userRegisterBindingModel.getEmail()).size() > 0) {
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("userExists", true);
             return "redirect:register";
